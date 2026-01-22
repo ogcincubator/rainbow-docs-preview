@@ -1,89 +1,64 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>About the OGC RAINBOW</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+    <title>About the OGC definitions service</title>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+            crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/css/styles.css">
     <script src="assets/js/toc.js"></script>
+    <link rel="icon" href="https://www.ogc.org/wp-content/uploads/2025/12/OGC-logo-150x150.png" sizes="32x32"/>
+    <link rel="icon" href="https://www.ogc.org/wp-content/uploads/2025/12/OGC-logo-300x300.png" sizes="192x192"/>
+    <link rel="apple-touch-icon" href="https://www.ogc.org/wp-content/uploads/2025/12/OGC-logo-300x300.png"/>
+    <meta name="msapplication-TileImage" content="https://www.ogc.org/wp-content/uploads/2025/12/OGC-logo-300x300.png"/>
   </head>
   <body>
     <div class="container">
       <h1>
-        <a href="https://www.ogc.org"><img src="assets/img/ogc-logo.svg" alt="" height="32" style="vertical-align: baseline; margin-right: 10px;"></a>
-        OGC RAINBOW <small class="text-body-secondary">(formerly OGC Definitions Server)</small>
+        <a href="https://www.ogc.org"><img src="assets/img/ogc-logo.svg" alt="" height="32"
+                                           style="vertical-align: baseline; margin-right: 10px;"></a>
+        OGC Definitions Service
       </h1>
 
       <div>
-        <p>The OGC Registry for Accessible Identifiers of Names and Basic Ontologies for the Web (RAINBOW) is a
-          Web
-          accessible source of information about things (“Concepts”) the OGC defines or that communities ask
-          the OGC to
-          host on their behalf. It applies <a href="https://www.go-fair.org/fair-principles">FAIR
-            principles</a> to the
-          key concepts that underpin interoperability in systems using OGC specifications.</p>
+        <p>The OGC Definitions Service <span class="text-muted">(formerly "OGC definitions server")</span> is a Web
+          accessible source of information about things ("Concepts") the
+          OGC defines or that communities ask the OGC to host on their behalf. It applies <a
+                  href="#fair">FAIR principles</a> to the key concepts that underpin
+          interoperability in systems using OGC specifications.</p>
+
+        <p>This service is part of the <strong>OGC RAINBOW ecosystem</strong>.</p>
 
         <h3>Where is it?</h3>
-        <p>OGC RAINBOW is intended to be a <em>node</em> in an interoperable ecosystem of resources published by
+        <p>The OGC Definitions Service is intended to be a <em>node</em> in an interoperable ecosystem of resources
+          published by
           different
           communities. </p>
-        <p>The “core” OGC RAINBOW can be accessed at <a
+        <p>The "core" Definitions Service instance can be accessed at <a
                 href="https://www.opengis.net/def">https://www.opengis.net/def</a>
           and holds definitions for <strong>terms defined by OGC</strong> processes, along with a range of
-          “metamodel”
+          "metamodel"
           resources we use to describe and interconnect these resources. There are a number of different types
           of
           resource
-          (all linked together to support the Findable principle). As these resource types mature more user
-          friendly
+          (all linked together to support the <a href="#fair-findable">Findable principle</a>). As these resource types
+          mature more user-friendly
           entry
           points will be provided.</p>
-        <p>The OGC also hosts additional nodes for community content and specification development purposes.</p>
-        <p>These are the set of nodes planned to come online shortly:</p>
-
+        <p>The OGC also hosts additional nodes for community content and specification development purposes:</p>
         <ul>
-          <li><strong>hosted</strong> – content hosted by OGC on behalf of communities using OGC standards
-            <ul>
-              <li><strong>vocabularies</strong> – vocabularies requiring a hosting solution for projects
-                and communities
-                the OGC supports that cannot provide long-term stable hosting for these resources <em>in
-                  a FAIR
-                  way.</em>
-              </li>
-
-              <li><strong>profiles register </strong> – this is a register of specifications that use or
-                refine OGC
-                standards for use in specific domains, but may not include OGC managed resources. (This
-                register will
-                duplicate OGC defined profiles, however for these and any other profiles defined by
-                external agencies
-                their URIs will link back to the OGC authoritative versions)
-              </li>
-
-              <li><strong>examples</strong> – example data intended as a <em>reference implementation</em>
-                to support
-                externally hosted conted – such as <strong>observableProperties </strong>examples to
-                support
-                Observations
-              </li>
-            </ul>
-          </li>
-
-          <li><strong>staging</strong> – an environment where content may be reviewed before publishing to
-            core or
-            hosted
-            environments
-          </li>
-
-          <li><strong>sandpit</strong> – an environment for developing and testing resources prior to
-            submission for use
-            in standards
+          <li><strong><a href="https://defs-hosted.opengis.net">Hosted instance</a></strong>: content hosted by the OGC
+            on behalf of communities using OGC standards and/or related to projects in which the OGC is a participating
+            partner.
           </li>
         </ul>
 
         <p>In addition, OGC manages a <strong>dev</strong> environment to test new functionality.</p>
 
-        <p>This is all supported by a modular containerised open source deployment toolkit, allowing others to
+        <p>This is all supported by a modular containerized open source deployment toolkit, allowing others to
           replicate
           such nodes. </p>
 
@@ -92,12 +67,13 @@
         <p>The <em>things</em> hosted by Definition Server nodes can be anything that is important in the course
           of
           interoperability around spatial information where the OGC plays a role in facilitating common
-          understanding –
+          understanding &mdash;
           either through publishing specifications or assisting communities to share related concepts. OGC
           uses stable
           web
-          addresses (URIs) to unambiguously identify concepts in its specifications. RAINBOW makes those URIs
-          “work” –
+          addresses (URIs) to unambiguously identify concepts in its specifications. The Definitions Service makes those
+          URIs
+          "work" –
           i.e. makes them <em>dereference</em> to a definition that can be used.</p>
 
         <p>Examples include the <a href="http://www.opengis.net/def/glossary">OGC glossary</a>, terms from <a
@@ -106,7 +82,7 @@
           such as the <a href="https://www.opengis.net/def/schema/hy_features/hyf/HY_HydroFeature">HY_Features
             schema</a> from the Hydrology Domain Working Group, and many others.</p>
 
-        <p>The participation of OGC in the European Union’s Horizon 2020 research and innovation programme
+        <p>The participation of OGC in the European Union’s Horizon 2020 research and innovation program
           projects <a
                   href="https://www.ogc.org/initiatives/databio/">DataBio</a> (Grant Agreement No 732064), <a
                   href="https://www.ogc.org/initiatives/nextgeoss/">NextGEOSS</a> (Grant Agreement No 730329),
@@ -117,7 +93,8 @@
                   href="https://www.ogc.org/initiatives/demeter/">DEMETER</a> (Grant agreement No 857202) has
           contributed to
           the
-          development of The OGC RAINBOW, ensuring that these and future projects can benefit from a free and
+          development of the OGC RAINBOW and the OGC Definitions Service, ensuring that these and future projects can
+          benefit from a free and
           sustainable
           service.</p>
 
@@ -129,7 +106,7 @@
             (instead of downloading large or complex documents in varying formats).
           </li>
 
-          <li>Ability to get machine readable versions of these details (e.g. JSON to allow simple integration
+          <li>Ability to get machine-readable versions of these details (e.g. JSON to allow simple integration
             of
             details
             into Web and mobile applications).
@@ -153,14 +130,14 @@
           <li><em><strong>Concept</strong></em> – an individual definition&nbsp;</li>
 
           <li><em><strong>ConceptScheme</strong></em> – a set of <strong>Concepts</strong> and
-            <strong>Collections</strong> managed as a whole – this is deemed to be a “Register” according to
+            <strong>Collections</strong> managed as a whole – this is deemed to be a "Register" according to
             ISO19135
             (Procedures for Registration)&nbsp;
           </li>
 
           <li><em><strong>Collection</strong></em> – a way of grouping <strong>Concepts</strong> – inside or
             across
-            ConceptSchemes, without requiring “broader/narrower” semantics.
+            ConceptSchemes, without requiring "broader/narrower" semantics.
           </li>
 
           <li><em><strong>Term</strong></em> – an identifiable object – i.e. any of <strong>Concept</strong>,
@@ -174,7 +151,8 @@
             or a data object or a combination of both.&nbsp;
           </li>
 
-          <li><em><strong>Resource</strong></em> – an information object on the Web. Typically the RAINBOW
+          <li><em><strong>Resource</strong></em> – an information object on the Web. Typically, the OGC Definitions
+            Service
             will redirect
             qualified <strong>term</strong> identifiers to some resource.
           </li>
@@ -187,47 +165,55 @@
 
         <h3 id="1-3-status"><a></a>Current Status</h3>
 
-        <p>The RAINBOW has a complete set of <strong>terms</strong> that have been defined by OGC since the
+        <p>The OGC Definitions Service has a complete set of <strong>terms</strong> that have been defined by OGC since
+          the
           inception of
           the OGC Naming Authority – which aims to keep all such URL references consistent.</p>
 
         <p>Efforts are underway to improve the scope and detail of information available about each
           <strong>term</strong>
-          – in particular cross references between specification documents and related
+          – in particular cross-references between specification documents and related
           <strong>Concepts</strong>.</p>
 
         <p>The access API implements the draft W3C Recommendation for <a
-                href="https://www.w3.org/TR/dx-prof-conneg/">“Content
-          Negotiation by Profile”</a>.</p>
+                href="https://www.w3.org/TR/dx-prof-conneg/">"Content
+          Negotiation by Profile"</a>.</p>
 
-        <h3 id="1-4-fair">Making Concepts FAIR – Findable, Accessible, Interoperable, and
+        <h3 id="fair">Making Concepts FAIR – Findable, Accessible, Interoperable, and
           Reusable<br></h3>
 
-        <h4><strong>Findable</strong></h4>
+        <p>
+          The OGC Definitions Service is designed to apply and promote the
+          <a href="https://www.go-fair.org/fair-principles">FAIR principles</a>
+          for definitions and identifiers.
+        </p>
 
-        <p>RAINBOW is implemented using Linked Data principles – so the combination of stable URIs allowing
+        <h4 id="fair-findable"><strong>Findable</strong></h4>
+
+        <p>The OGC Definitions Service is implemented using Linked Data principles – so the combination of stable URIs
+          allowing
           references
           to
-          be made from outside, and “follow your nose” navigation via links from one <strong>term</strong> to
+          be made from outside, and "follow your nose" navigation via links from one <strong>term</strong> to
           related
           <strong>terms</strong> provides enhanced <em>findability</em>.</p>
 
-        <p>Currently a limited search capability over <strong>Concept</strong> definitions is provided, however
+        <p>Currently, a limited search capability over <strong>Concept</strong> definitions is provided, however
           the
           contents are indexable by external search engines.</p>
 
-        <h4><strong>Accessible</strong></h4>
+        <h4 id="fair-accessible"><strong>Accessible</strong></h4>
 
-        <p>RAINBOW does not make any assumptions about the client software that may be used now or in the future
+        <p>The service does not make any assumptions about the client software that may be used now or in the future
           to
           access
           definitions, other than the use of HTTP protocols. This enhances <em>accessibility</em> for
           different
           environments.</p>
 
-        <p>The “Web-friendly” way of using an identifier (i.e. a URL) to get more information is augmented by
-          “content
-          negotiation” – RAINBOW can deliver both user-friendly Web pages and other forms of resource
+        <p>The "Web-friendly" way of using an identifier (i.e. a URL) to get more information is augmented by
+          "content
+          negotiation" – the Definitions Service can deliver both user-friendly Web pages and other forms of resource
           representations,
           e.g. JSON-LD or Turtle (TTL).</p>
 
@@ -238,7 +224,7 @@
           JSON. All
           three representations have the same content, but differ in its serialization/format. This allows
           both human
-          users to explore the OGC Definition Server, as well as machines to process its content.</p>
+          users to explore the OGC Definition Server, and machines to process its content.</p>
 
         <figure class="size-large my-3 text-center">
           <img
@@ -249,9 +235,9 @@
             (fragments, HTML left, TTL middle, JSON right</small></em><br></figcaption>
         </figure>
 
-        <h4><strong>Interoperable</strong></h4>
+        <h4 id="fair-interoperable"><strong>Interoperable</strong></h4>
 
-        <p>The <em>interoperability</em> of these term URI behaviours and the resources they provide access to
+        <p>The <em>interoperability</em> of these term URI behaviors and the resources they provide access to
           is a key
           goal. There are several aspects of this handled using different mechanisms:</p>
 
@@ -309,7 +295,7 @@
 
         <h5>Encoding Interoperability</h5>
 
-        <p>RAINBOW currently offers a range of encodings for all terms:&nbsp;</p>
+        <p>The OGC Definitions Service currently offers a range of encodings for all terms:&nbsp;</p>
 
         <ol>
           <li>HTML&nbsp;</li>
@@ -335,17 +321,17 @@
 
         <h5>Interaction (API) Interoperability</h5>
 
-        <p>The RAINBOW maximizes interoperability through its use of HTTP to access resources.</p>
+        <p>The Definitions Service maximizes interoperability through its use of HTTP to access resources.</p>
 
         <p>Flexibility is managed through three key mechanisms based on W3C recommendations:</p>
 
         <ol>
-          <li>Separation of the concepts of “things” and “information resources representing things”, as per
+          <li>Separation of the concepts of "things" and "information resources representing things", as per
             <a
                     href="https://www.w3.org/2001/tag/issues.html#httpRange-14">w3.org/2001/tag/issues.html#httpRange-14</a>
           </li>
 
-          <li>Content-negotiation (asking for a specific encoding type in a HTTP GET response), as per <a
+          <li>Content-negotiation (asking for a specific encoding type in an HTTP GET response), as per <a
                   href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec12.html">w3.org/Protocols/rfc2616/rfc2616-sec12.html</a>
           </li>
 
@@ -358,34 +344,33 @@
           OGC
           RAINBOW design. </em></p>
 
-        <p>As needs are identified, new profiles can be specified and arbitrary “graphs” created by custom API
+        <p>As needs are identified, new profiles can be specified and arbitrary "graphs" created by custom API
           endpoints
           to deliver different views of the available semantic resources. Interoperability is supported by
           publishing
           these profiles as definition resources for reuse.</p>
 
-        <h3>Reusable</h3>
+        <h4 id="fair-reusable">Reusable</h4>
 
-        <p>The OGC Naming Authority manages RAINBOW to ensure all term URIs are stable with transparent
+        <p>The OGC Naming Authority manages the Definitions Service to ensure all term URIs are stable with transparent
           governance.
           These
           identifiers can thus be safely used in external context. All content is freely available for reuse.
           Reuse is
           envisaged largely through the machine-readable versions.</p>
 
-        <p><em>Note that documentation with appropriate licences will be retrofitted to this content – however
-          its safe
-          to
-          assume that an appropriate licence is granted to re-use with attribution and without
+        <p><em>Note that documentation with appropriate licenses will be retrofitted to this content – however it is
+          safe to assume that an appropriate license is granted to re-use with attribution and without
           modification.</em></p>
 
-        <h2 id="2-0-using">Using RAINBOW</h2>
+        <h2 id="2-0-using">Using the OGC Definitions Service</h2>
 
         <h3 id="2-2-uri"><a></a>URI Access</h3>
 
-        <p>RAINBOW can be accessed at <a href="https://www.opengis.net/def">https://www.opengis.net/def.</a></p>
+        <p>The core instance of the Definitions Service can be accessed at <a href="https://www.opengis.net/def">https://www.opengis.net/def</a>.
+        </p>
 
-        <p>Accessing definitions by following (i.e. “dereferencing”) OGC published URIs is supported.</p>
+        <p>Accessing definitions by following (i.e. "dereferencing") OGC published URIs is supported.</p>
 
         <p>The server will respond with an HTTP 303 URI redirect to the current service interface appropriate to
           the
@@ -393,13 +378,11 @@
 
         <p class="text-center"><code>http://www.opengis.net/def/docs/03-003r10<br>⇓<br>HTTP 303<br>Location:
         </code><a
-                href="http://defs.opengis.net/vocprez/object?uri=http://www.opengis.net/def/docs/03-003r10">http://defs.opengis.net/vocprez/object?uri=http://www.opengis.net/def/do…</a>
+                href="https://defs.opengis.net/prez/object?uri=https://www.opengis.net/def/docs/03-003r10">https://defs.opengis.net/prez/object?uri=https://www.opengis.net/def/do…</a>
         </p>
 
-        <p>(this redirect is necessary for several reasones, such as the actual target resource URL may change
-          as we
-          improve the interface options for specific types of content, but the original URI will always
-          work)</p>
+        <p>(this redirect is necessary for several reasons, such as the actual target resource URL may change as we
+          improve the interface options for specific types of content, but the original URI will always work)</p>
 
         <h3 id="2-2-org"><a></a>Organization of ConceptSchemes, Collections, and Concepts</h3>
 
@@ -408,23 +391,23 @@
           the base part of the URI path:<br><code>http://www.opengis.net/def/docs/03-003r10 skos:inScheme
             http://www.opengis.net/def/docs</code></p>
 
-        <p>Each <strong>ConceptScheme</strong> will have a “top level” <strong>Collection</strong> that contains
+        <p>Each <strong>ConceptScheme</strong> will have a "top level" <strong>Collection</strong> that contains
           a list
           of
-          members (which may be a flat list or a list of sub-Collections). By default this will have a URI
+          members (which may be a flat list or a list of sub-Collections). By default, this will have a URI
           based on
           adding
-          a “/” to the <strong>ConceptScheme</strong> URI. This is also made explicit in the data to allow
+          a "/" to the <strong>ConceptScheme</strong> URI. This is also made explicit in the data to allow
           link
           following:<br><code>http://www.opengis.net/def/docs
             policy:collectionView http://www.opengis.net/def/docs/</code></p>
 
-        <p><em>NB: many systems conflate URL paths with and without trailing “/” to be the same thing – but this
+        <p><em>NB: many systems conflate URL paths with and without trailing "/" to be the same thing – but this
           potentially leads to ambiguity and typically needs other non-standard mechanisms to access metadata
           about a
           collection.</em></p>
 
-        <p><strong>Concepts</strong> may also be organised in a hierarchical “taxonomy” via a non-overlapping
+        <p><strong>Concepts</strong> may also be organized in a hierarchical "taxonomy" via a non-overlapping
           set of
           broader/narrower relationships, with the top of each hierarchy linked via skos:hasTopConcept from
           the parent
@@ -433,7 +416,7 @@
         <p>This supports the following capabilities:</p>
 
         <ol>
-          <li>ConceptSchemes are the “unit of governance” where metadata and download links for sets of
+          <li>ConceptSchemes are the "unit of governance" where metadata and download links for sets of
             definitions can
             be
             accessed
@@ -493,24 +476,26 @@
 
         <h3>Contact</h3>
 
-        <p>OGC RAINBOW is managed by the OGC Naming Authority. <a href="https://www.ogc.org/contact-ogc/">Contact
+        <p>The OGC Definitions Service is managed by the OGC Naming Authority. <a
+                href="https://www.ogc.org/contact-ogc/">Contact
           OGC</a> here.</p>
 
         <h3>Feedback</h3>
 
-        <p>Feedback is welcome on how to improve any aspect of the OGC RAINBOW.</p>
+        <p>Feedback is welcome on how to improve any aspect of the OGC RAINBOW and the OGC Definitions Service.</p>
 
         <p>If you intend to integrate or replicate aspects of the service please drop us a line so we can ensure
           future
           changes do not negatively impact you.</p>
 
-        <p>The User Interface (HTML) views are largely “out-of-the-box”, and suggestions for improvement are
+        <p>The User Interface (HTML) views are largely "out-of-the-box", and suggestions for improvement are
           welcome but
           may not be prioritized over content improvement and machine-readable options.</p>
 
         <h3>Additional Requirements</h3>
 
-        <p>If RAINBOW is potentially able to solve a problem for a community, then it can be readily extended in
+        <p>If the OGC Definitions Service is potentially able to solve a problem for a community, then it can be readily
+          extended in
           various
           ways. In general, requests should be done through an existing OGC process, such as a Working Group,
           however
