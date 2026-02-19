@@ -16,7 +16,7 @@ understand and work with OGC RAINBOW.
 
 ## Where to start
 
-- If you're new here, head to the [Tutorial](/tutorials/tutorial-1/introduction) for a
+- If you're new here, head to the [Tutorial](/tutorials/applied-ogc-rainbow/introduction) for a
   guided walkthrough.
 - If you're looking for a specific topic, use the sidebar or the search bar.
 

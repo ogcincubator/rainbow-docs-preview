@@ -1,6 +1,7 @@
 ---
 sidebar_position: 2
 title: "Deploy the OGC Definitions Service"
+slug: /applied-ogc-rainbow/1-deploy
 ---
 
 # Deploy the OGC Definitions Service
@@ -160,4 +161,4 @@ You now have a running OGC Definitions Service with:
 - A web UI to browse it
 - An nginx-ld reverse proxy for linked data redirections
 
-Next: [Section 2 – Define the indicator](./section-2).
+Next: [Section 2 – Define the indicator](./section-2.md).

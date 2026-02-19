@@ -1,6 +1,7 @@
 ---
 sidebar_position: 4
 title: "Upload and view the data"
+slug: /applied-ogc-rainbow/3-upload-and-view
 ---
 
 # Upload and view the data

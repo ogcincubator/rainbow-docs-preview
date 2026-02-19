@@ -1,6 +1,7 @@
 ---
 sidebar_position: 1
 title: Introduction
+slug: /applied-ogc-rainbow/introduction
 ---
 
 # Applied OGC RAINBOW: Creating and publishing an indicator definition
@@ -49,8 +50,8 @@ and publish the result using a locally deployed OGC Definitions Service.
 
 | Section | What it covers |
 |---|---|
-| [Section 1: Deploy the OGC Definitions Service](./section-1) | Setting up Fuseki, Prez, and nginx-ld locally with Docker |
-| [Section 2: Define the indicator](./section-2) | Writing and validating the provenance chain for the CDI |
-| [Section 3: Upload and view the data](./section-3) | Loading data into Fuseki and browsing it as linked data |
+| [Section 1: Deploy the OGC Definitions Service](./section-1.md) | Setting up Fuseki, Prez, and nginx-ld locally with Docker |
+| [Section 2: Define the indicator](./section-2.md) | Writing and validating the provenance chain for the CDI |
+| [Section 3: Upload and view the data](./section-3.md) | Loading data into Fuseki and browsing it as linked data |
 
-Ready? Continue to [Section 1](./section-1).
+Ready? Continue to [Section 1](./section-1.md).

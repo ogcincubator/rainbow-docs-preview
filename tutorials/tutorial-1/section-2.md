@@ -1,6 +1,7 @@
 ---
 sidebar_position: 3
 title: "Define the indicator"
+slug: /applied-ogc-rainbow/2-define-the-indicator
 ---
 
 # Define the indicator
@@ -137,4 +138,4 @@ upload the data.
 You now have a validated, semantically uplifted JSON-LD file that describes
 the Composite Drought Indicator and its provenance chain.
 
-Next: [Section 3 – Upload and view the data](./section-3).
+Next: [Section 3 – Upload and view the data](./section-3.md).
