@@ -105,6 +105,29 @@ The `bblocks-client-python` library does two things:
    `used` becomes `prov:used`. The result is a proper RDF graph that Fuseki
    can store and SPARQL can query.
 
+Before installing anything, create a **virtual environment**. A virtual
+environment is an isolated Python installation for your project, which keeps
+its dependencies separate from the rest of your system. This prevents version
+conflicts between projects and makes it easy to clean up afterwards.
+
+```bash
+python -m venv .venv
+```
+
+Then activate it:
+
+```bash
+# macOS / Linux
+source .venv/bin/activate
+
+# Windows (PowerShell)
+.venv\Scripts\Activate.ps1
+```
+
+Your terminal prompt will change to show `(.venv)`, indicating the environment
+is active. All `pip install` commands from this point on will install into the
+virtual environment only.
+
 Install the library with RDF support:
 
 ```bash
@@ -151,6 +174,16 @@ values in the document to produce absolute URIs. For example, the indicator's
 `https://example.com/rainbow/indicators/cdi/station-alpha/2024-07`. This must
 match the URI prefix you configured in the nginx-ld `REDIRECTS` variable in
 Section 1, so that the resource URI and its local URL are consistent.
+
+:::warning Example URIs are not real addresses
+The script above uses `https://example.com/rainbow/` as the `base_uri`, which
+is a placeholder for the domain where the service will eventually be publicly
+hosted. For local testing, these URIs do not resolve on their own — they only
+work because nginx-ld maps them to your local instance. If you try to open a
+`https://example.com/rainbow/...` URI directly in a browser, it will not
+connect to your local service. Use the `http://localhost:8080/rainbow/...`
+equivalent instead, as described in Section 3.
+:::
 
 If validation passes and `cdi-indicator.ttl` is created, you are ready to
 upload the data.

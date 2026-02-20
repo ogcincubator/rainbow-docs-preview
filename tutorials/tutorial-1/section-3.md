@@ -109,6 +109,15 @@ the URL is constructed, let's trace it from the source:
    http://localhost:8080/rainbow/indicators/cdi/station-alpha/2024-07
    ```
 
+:::warning Local testing configuration
+If you are testing locally and did not replace the `https://my.own.domain/`
+references in `docker-compose.yml` with `http://localhost:8080/`, navigating
+to the resource URL or following a linked data redirect will send your browser
+to `https://my.own.domain/[...]` instead of your local instance. Make sure
+the `SYSTEM_URI`, `PREZ_UI_URL`, and `EXTERNAL_PREZ_BACKEND_URL` environment
+variables are all set to `http://localhost:8080/` before proceeding.
+:::
+
 Navigate to that URL to see the Prez UI rendering of the resource.
 
 <!-- TODO: add screenshot of the Prez UI result -->
