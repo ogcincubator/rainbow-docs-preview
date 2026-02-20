@@ -51,23 +51,23 @@ Create a file called `cdi-indicator.json`. The document describes:
   "featureType": "CompositeIndicator",
   "name": "Composite Drought Indicator – Station Alpha – July 2024",
   "wasGeneratedBy": {
-    "id": "act:cdi-computation/station-alpha/2024-07",
+    "id": "act/cdi-computation/station-alpha/2024-07",
     "activityType": "CompositeIndicatorComputation",
     "name": "CDI computation – Station Alpha – July 2024",
     "endedAtTime": "2024-08-01T00:00:00Z",
     "used": [
       {
-        "id": "obs:soil-moisture-anomaly/station-alpha/2024-07",
+        "id": "obs/soil-moisture-anomaly/station-alpha/2024-07",
         "featureType": "SoilMoistureAnomaly",
         "name": "Soil Moisture Anomaly – Station Alpha – July 2024"
       },
       {
-        "id": "obs:rainfall-anomaly/station-alpha/2024-07",
+        "id": "obs/rainfall-anomaly/station-alpha/2024-07",
         "featureType": "RainfallAnomaly",
         "name": "Rainfall Anomaly – Station Alpha – July 2024"
       },
       {
-        "id": "obs:vegetation-condition-anomaly/station-alpha/2024-07",
+        "id": "obs/vegetation-condition-anomaly/station-alpha/2024-07",
         "featureType": "VegetationConditionAnomaly",
         "name": "Vegetation Condition Anomaly – Station Alpha – July 2024"
       }
