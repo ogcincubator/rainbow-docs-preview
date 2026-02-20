@@ -169,12 +169,24 @@ the full syntax. For local testing the default mapping is sufficient.
 
 ## Deployment options
 
-The compose file supports two main usage patterns:
+nginx-ld serves two roles at once: it acts as a **reverse proxy** that routes
+incoming requests to the right backend service, and it handles **linked data
+URI redirections**. For local development, having both in a single
+container is convenient.
 
-- **Full stack** – all four services running together, with nginx-ld acting as
-  the public entry point on port 8080. Linked data redirections are active.
-- **Without nginx-ld** – Prez UI is the direct entry point. Useful when you do
-  not need URI redirections (e.g. during initial data loading).
+For this reason, the full stack as described above is the recommended starting
+point, including for development. Running without nginx-ld means you lose URI
+redirection and would have to expose and manage individual service ports
+directly, which is more cumbersome.
+
+That said, **production deployments will often look different**. You may
+already have a reverse proxy (nginx, Traefik, Caddy, a cloud load balancer,
+etc.) handling TLS termination and routing for your infrastructure. In that
+case, you would replace nginx-ld with your existing proxy and configure it to
+replicate the linked data redirect behavior — or keep nginx-ld behind your
+outer proxy for just that purpose. The right architecture depends on your
+environment; the compose file here is a self-contained starting point, not a
+production blueprint.
 
 ## Starting the service
 
