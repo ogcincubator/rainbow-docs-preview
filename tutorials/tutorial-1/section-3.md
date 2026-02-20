@@ -149,3 +149,31 @@ You have successfully:
 
 The indicator is now published and accessible as a dereferenceable linked data
 resource.
+
+## Moving to real-world URIs
+
+Throughout this tutorial we have used `https://example.com/rainbow/` as a
+placeholder URI namespace. For a real deployment, you would replace this with
+a namespace you actually control, so that the URIs you publish are stable and
+dereferenceable on the public web.
+
+There are two common approaches:
+
+- **Use a domain you control.** If your organization owns a domain, you can
+  dedicate a path on it to your definitions (e.g.
+  `https://yourdomain.example.org/rainbow/`). You configure your OGC
+  Definitions Service at that address and set the nginx-ld `REDIRECTS`
+  accordingly. The URIs you mint will then resolve directly to your service.
+
+- **Use a persistent URI redirection service.** Services such as
+  [w3id.org](https://w3id.org) provide stable, community-governed URI
+  namespaces that redirect to a URL of your choice. This is useful when you
+  do not control a suitable domain, or when you want the URIs to remain stable
+  even if the underlying service moves. You register a namespace (e.g.
+  `https://w3id.org/your-namespace/rainbow/`), configure it to redirect to
+  your deployment, and use that namespace as the `base_uri` in the uplift
+  step.
+
+In both cases, the only things that change are the `base_uri` passed to
+`uplift_json` and the corresponding entries in `docker-compose.yml`. The
+structure of the data and the rest of this tutorial remain exactly the same.
