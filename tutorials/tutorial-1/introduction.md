@@ -31,8 +31,12 @@ station:
 
 A single **computation activity** takes these three observations as inputs and
 produces the CDI value as output. We will capture this dependency as a
-*provenance chain* using an OGC Building Block, validate it, and then upload
-and publish the result using a locally deployed OGC Definitions Service.
+**provenance chain** — a machine-readable record of what data was used, how it
+was processed, and what was produced — using an OGC Building Block. Publishing
+this chain as linked data makes the indicator's methodology transparent,
+verifiable, and reusable by both people and machines. Once the chain is written
+and validated, we will upload and publish it using a locally deployed OGC
+Definitions Service.
 
 ## What you will learn
 
@@ -43,8 +47,10 @@ and publish the result using a locally deployed OGC Definitions Service.
 
 ## Prerequisites
 
-- A working **Docker** environment with the `docker compose` plugin
-- A working **Python 3** environment (3.9 or later recommended)
+- A working **Docker** environment with the `docker compose` plugin. Installation instructions are
+  available on the [Docker Desktop website](https://docs.docker.com/desktop/).
+- A working **Python 3** environment (3.9 or later recommended). We recommend the official
+  distribution from [python.org](https://www.python.org/downloads/).
 
 ## How this tutorial is organized
 

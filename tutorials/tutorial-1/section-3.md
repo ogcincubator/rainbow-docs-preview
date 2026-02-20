@@ -6,21 +6,26 @@ slug: /applied-ogc-rainbow/3-upload-and-view
 
 # Upload and view the data
 
-With the OGC Definitions Service running and the uplifted JSON-LD file in
+With the OGC Definitions Service running and the uplifted Turtle file in
 hand, we can now load the data into the triplestore and browse it as linked
 data.
 
 ## About named graphs
 
-Fuseki stores RDF data in **named graphs** — separate partitions of the
-triplestore identified by a URI. Keeping each dataset in its own named graph
-makes it easier to update or remove it later without affecting other data.
+Fuseki stores RDF data in **named graphs** — separate, named partitions of the
+triplestore, each identified by a URI. Keeping each dataset in its own named
+graph makes it easy to update or remove it later without affecting other data,
+and allows SPARQL queries to target a specific subset of the data.
 
 We will use the graph URI `https://example.com/rainbow/graphs/indicators` for
-this tutorial. You can choose any URI; the convention is to use a URI that
+this tutorial. You can choose any URI; the convention is to use one that
 reflects the content.
 
 ## Uploading the data
+
+We cover three direct ways to upload the file, plus a mention of higher-level
+OGC tooling. Option A (the Fuseki UI) is the easiest way to get started;
+Options B and C are more suitable for scripting or automation.
 
 ### Option A: Fuseki admin interface
 
@@ -39,14 +44,7 @@ reflects the content.
 
 ### Option B: curl
 
-:::caution Review required
-The endpoint path and content type below assume the default Fuseki Graph Store
-Protocol setup from the docker-compose.yml — adjust if your dataset name or
-Fuseki version differs.
-:::
-
 ```bash
-# TODO: review dataset name and graph URI before running
 curl -X PUT \
   -u admin:${FUSEKI_PASSWORD} \
   -H "Content-Type: text/turtle" \
@@ -57,20 +55,20 @@ curl -X PUT \
 Set `FUSEKI_PASSWORD` to the value you configured in `docker-compose.yml`, or
 replace `${FUSEKI_PASSWORD}` with the password directly.
 
-### Option C: Python (requests + SPARQL Graph Store Protocol)
+Note that this uses `PUT`, which **replaces** the entire named graph with the
+uploaded content. If you want to add triples to an existing graph instead of
+replacing it, use `POST`.
 
-:::caution Review required
-Verify the dataset name and graph URI match your deployment.
-:::
+### Option C: Python (requests + SPARQL Graph Store Protocol)
 
 ```python
 import os
 import requests
 
 FUSEKI_URL = "http://localhost:3030"
-DATASET = "fuseki"   # TODO: review - must match the dataset name in Fuseki
-GRAPH_URI = "https://example.com/rainbow/graphs/indicators"  # TODO: review
-FUSEKI_PASSWORD = os.environ.get("FUSEKI_PASSWORD", "changeme")  # TODO: review
+DATASET = "fuseki"
+GRAPH_URI = "https://example.com/rainbow/graphs/indicators"
+FUSEKI_PASSWORD = os.environ.get("FUSEKI_PASSWORD", "changeme")
 
 with open("cdi-indicator.ttl") as f:
     data = f.read()
@@ -94,41 +92,42 @@ a dedicated tutorial.
 
 ## Browsing the resource
 
-Once the data is loaded, open the Prez UI in your browser. The URL of the
-indicator resource will be based on the `id` in your JSON-LD document combined
-with the nginx-ld redirection configuration you set up in Section 1.
+Once the data is loaded, you can browse it in the Prez UI. To understand how
+the URL is constructed, let's trace it from the source:
 
-For the example document from Section 2, the resource URI would be:
+1. The indicator's `id` in the JSON document is `indicators/cdi/station-alpha/2024-07`.
+2. During semantic uplift, `base_uri` (`https://example.com/rainbow/`) is prepended,
+   giving the full resource URI:
+   ```
+   https://example.com/rainbow/indicators/cdi/station-alpha/2024-07
+   ```
+3. The nginx-ld `REDIRECTS` mapping (`/rainbow/=https://example.com/rainbow/`)
+   means any request to `http://localhost:8080/rainbow/...` is treated as a
+   request for the corresponding `https://example.com/rainbow/...` URI. So the
+   resource is locally accessible at:
+   ```
+   http://localhost:8080/rainbow/indicators/cdi/station-alpha/2024-07
+   ```
 
-```
-https://example.com/rainbow/indicators/cdi/station-alpha/2024-07
-```
-
-The mappings that we configured for the nginx-ld server make it so
-that this resource can be accessed at:
-
-```
-http://localhost:8080/rainbow/indicators/cdi/station-alpha/2024-07
-```
-
-Navigate to that path to see the Prez UI rendering of the resource.
+Navigate to that URL to see the Prez UI rendering of the resource.
 
 <!-- TODO: add screenshot of the Prez UI result -->
 
 ## Retrieving the linked data representation
 
-Use `curl` with `Accept: text/turtle` and follow redirects (`-L`) to retrieve
-the RDF representation directly:
+You can also retrieve the RDF representation directly using `curl`. The `-L`
+flag is necessary because nginx-ld implements the linked data pattern: it
+inspects the `Accept` header and responds with an HTTP 303 redirect to the
+appropriate Prez endpoint. Without `-L`, curl would stop at the redirect and
+return nothing useful.
 
 ```bash
 curl -L \
   -H "Accept: text/turtle" \
   "http://localhost:8080/rainbow/indicators/cdi/station-alpha/2024-07"
-
 ```
 
-nginx-ld will redirect the request to the appropriate Prez endpoint, which
-will return the resource serialized as Turtle RDF.
+Prez will return the resource serialized as Turtle RDF.
 
 ## Summary
 

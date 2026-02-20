@@ -10,9 +10,23 @@ Before we can publish anything, we need somewhere to store and serve the data.
 In this section we deploy a local instance of the **OGC Definitions Service**
 using Docker.
 
+## A quick primer on Docker
+
+If you haven't used Docker before, here's the short version: Docker lets you
+run applications inside **containers** — lightweight, isolated environments
+that bundle an application together with everything it needs to run. This means
+you don't have to install or configure Fuseki, Prez, or any other component
+directly on your machine; Docker handles that for you.
+
+We'll use **Docker Compose**, a tool for defining and running multi-container
+applications. You describe all the services you need in a single file
+(`docker-compose.yml`), and Docker Compose takes care of starting them in the
+right order with the right settings.
+
 ## Components
 
-The service is made up of four components:
+The OGC Definitions Service is made up of four components, each running as a
+separate container:
 
 | Component | Role |
 |---|---|
@@ -21,13 +35,19 @@ The service is made up of four components:
 | **Prez UI** (frontend) | A web interface (built with Nuxt) that lets human users browse the published resources in a browser. |
 | **nginx-ld** *(optional)* | A reverse proxy that handles [linked data redirections](https://www.w3.org/TR/cooluris/): when a client requests a resource URI, nginx-ld redirects it to the appropriate Prez endpoint depending on the requested content type. Also useful for testing. |
 
+These containers communicate with each other over an internal network that
+Docker Compose creates automatically. From the outside, only two ports are
+exposed to your machine: **3030** for the Fuseki admin interface and **8080**
+for the public-facing entry point (nginx-ld).
+
 ## Creating a docker-compose.yml
 
-You can use the following content for your `docker-compose.yml`:
+Create a new directory for this tutorial and inside it create a file called
+`docker-compose.yml` with the following content:
 
 ```yaml
 services:
-  
+
   fuseki:
     image: dockerogc/fuseki
     environment:
@@ -51,7 +71,7 @@ services:
       driver: "json-file"
       options:
         max-size: "50m"
-        
+
   prez:
     image: dockerogc/prez
     depends_on:
@@ -64,12 +84,12 @@ services:
       SPARQL_ENDPOINT: http://fuseki:3030/fuseki/query
       PREZ_TITLE: OGC Rainbow
       PREZ_DESC: OGC Rainbow
-      
+
       # This points to the external prez-backend URL
       SYSTEM_URI: https://my.own.domain/prez-b/
       # This points to the external prez-ui URL
       PREZ_UI_URL: https://my.own.domain/prez/
-      
+
       ENABLE_SPARQL_ENDPOINT: 'true'
     restart: unless-stopped
 
@@ -89,19 +109,41 @@ services:
     depends_on:
       - prez
       - prez-ui
-    
+
     # The reverse proxy will be available on port 8080
     ports:
       - "8080:80"
     environment:
       # http://localhost:8080 can be used for tests here
       EXTERNAL_PREZ_BACKEND_URL: https://my.own.domain/prez-b
-      
+
       # Configure linked data redirects here. This controls how
       # requests made to the proxy will be mapped to full resource URIs
       REDIRECTS: |
         /rainbow/=https://example.com/rainbow/
 ```
+
+Let's walk through the key parts:
+
+**Fuseki** stores the RDF data. We give it an admin password and a dataset name
+(`fuseki`). Its data is persisted in a `fuseki-data` directory on your local
+machine, so it survives container restarts. The `healthcheck` block tells Docker
+Compose to wait until Fuseki is actually ready before starting Prez — otherwise
+Prez would try to connect before the database is up.
+
+**Prez** connects to Fuseki via SPARQL and exposes an OGC API. It is configured
+to start only after Fuseki passes its health check (`condition: service_healthy`).
+Several environment variables reference `https://my.own.domain/` — we will
+replace these in the next step.
+
+**Prez UI** is the browser-facing interface. It starts as soon as the Prez
+backend container has started (it does not need to wait for Prez to be fully
+ready).
+
+**nginx-ld** is the reverse proxy and public entry point. It sits in front of
+both Prez and Prez UI, handles linked data content negotiation, and exposes
+everything on port 8080. For local testing, `http://localhost:8080` acts as
+the entry point.
 
 ## Configuration
 
@@ -136,9 +178,22 @@ The compose file supports two main usage patterns:
 
 ## Starting the service
 
+From the directory containing your `docker-compose.yml`, run:
+
+:::note macOS and Windows
+Make sure Docker Desktop is running before executing the command below. You can
+check by looking for the Docker icon in your menu bar (macOS) or system tray
+(Windows).
+:::
+
 ```bash
 docker compose up -d
 ```
+
+The `-d` flag runs the containers in the background (detached mode), so your
+terminal is free to use while the services are running. Docker will pull the
+required images on the first run, which may take a minute or two depending on
+your connection.
 
 Once all containers are healthy, the following endpoints will be available:
 
