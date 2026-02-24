@@ -8,11 +8,18 @@ slug: /applied-ogc-rainbow/2-define-the-indicator
 
 In this section we describe the Composite Drought Indicator as a
 **provenance chain**: a machine-readable record of which observations were
-used and how the indicator was derived from them. Rather than writing the
-chain in an ad-hoc format, we use an **OGC Block** that provides a
-shared schema, validation rules, and a JSON-LD context — so the document we
-produce can be unambiguously interpreted by any system that understands the
-same standard.
+used and how the indicator was derived from them.
+
+An informal description — a comment in a spreadsheet, a paragraph in a report
+— conveys meaning to a human reader but is opaque to a machine. A provenance
+chain written against a shared standard is different: it can be validated
+automatically, transformed into RDF, and interpreted unambiguously by any
+system that understands the same standard. This is what makes it possible to
+embed the indicator's meaning in the data, rather than leaving it to be
+inferred from documentation.
+
+Rather than inventing our own format, we use an **OGC Block** that provides a
+schema, validation rules, and a JSON-LD context ready to use.
 
 ## The Provenance Chain OGC Block
 

@@ -8,7 +8,9 @@ slug: /applied-ogc-rainbow/1-deploy
 
 Before we can publish anything, we need somewhere to store and serve the data.
 In this section we deploy a local instance of the **OGC Definitions Service**
-using Docker.
+using Docker. Running your own instance means you have a complete knowledge
+graph stack under your control — a foundation you can build on with your own
+definitions, under URIs you own, without depending on any external service.
 
 ## A quick primer on Docker
 

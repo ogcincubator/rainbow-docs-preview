@@ -32,11 +32,17 @@ station:
 A single **computation activity** takes these three observations as inputs and
 produces the CDI value as output. We will capture this dependency as a
 **provenance chain** — a machine-readable record of what data was used, how it
-was processed, and what was produced — using an OGC Block. Publishing
-this chain as linked data makes the indicator's methodology transparent,
-verifiable, and reusable by both people and machines. Once the chain is written
-and validated, we will upload and publish it using a locally deployed OGC
-Definitions Service.
+was processed, and what was produced — using an OGC Block.
+
+Expressing the indicator this way has a concrete purpose: when a CDI value
+appears in a dataset, the provenance chain can travel with it. Any system or
+person consuming that data can follow the chain to understand exactly what the
+value represents, which inputs were used to compute it, and by what method —
+without relying on out-of-band documentation or shared conventions agreed
+informally. The meaning is preserved in the data itself.
+
+Once the chain is written and validated, we will upload and publish it using a
+locally deployed OGC Definitions Service.
 
 ## What you will learn
 
