@@ -95,18 +95,18 @@ a dedicated tutorial.
 Once the data is loaded, you can browse it in the Prez UI. To understand how
 the URL is constructed, let's trace it from the source:
 
-1. The indicator's `id` in the JSON document is `indicators/cdi/station-alpha/2024-07`.
+1. The indicator's `id` in the JSON document is `indicators/cdi`.
 2. During semantic uplift, `base_uri` (`https://example.com/rainbow/`) is prepended,
    giving the full resource URI:
    ```
-   https://example.com/rainbow/indicators/cdi/station-alpha/2024-07
+   https://example.com/rainbow/indicators/cdi
    ```
 3. The nginx-ld `REDIRECTS` mapping (`/rainbow/=https://example.com/rainbow/`)
    means any request to `http://localhost:8080/rainbow/...` is treated as a
    request for the corresponding `https://example.com/rainbow/...` URI. So the
    resource is locally accessible at:
    ```
-   http://localhost:8080/rainbow/indicators/cdi/station-alpha/2024-07
+   http://localhost:8080/rainbow/indicators/cdi
    ```
 
 :::warning Local testing configuration
@@ -133,7 +133,7 @@ return nothing useful.
 ```bash
 curl -L \
   -H "Accept: text/turtle" \
-  "http://localhost:8080/rainbow/indicators/cdi/station-alpha/2024-07"
+  "http://localhost:8080/rainbow/indicators/cdi"
 ```
 
 Prez will return the resource serialized as Turtle RDF.

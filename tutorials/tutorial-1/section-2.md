@@ -114,9 +114,14 @@ root-level element is a PROV-O Entity. `type` carries the specific semantic type
 entity.
 
 :::note Type URIs
-In a real-world situation, the `type`s used here (`Indicator`, `ObservedProperty`) would
-be either full URIs or JSON-LD terms defined somewhere (e.g., in a specialization of the
-provenance OGC Block). In our example, these types will not be part of the output RDF graph.
+In a real-world situation, the `type` values used here (`CompositeIndicator`,
+`ObservedProperty`) would be globally defined terms — either full URIs (e.g.
+`https://example.org/vocab#CompositeIndicator`) or JSON-LD terms mapped to URIs
+in a shared vocabulary. RDF only carries meaning for terms it can resolve to a
+URI; since the strings used here are plain labels with no such mapping, they
+will not appear in the output RDF graph. For this tutorial that is intentional:
+the structure and provenance relationships are what matter, and those are fully
+captured by the standard PROV-O terms (`wasGeneratedBy`, `used`, etc.).
 :::
 
 **`wasGeneratedBy`** — a PROV-O property linking the output entity to the
