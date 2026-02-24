@@ -32,7 +32,7 @@ station:
 A single **computation activity** takes these three observations as inputs and
 produces the CDI value as output. We will capture this dependency as a
 **provenance chain** — a machine-readable record of what data was used, how it
-was processed, and what was produced — using an OGC Building Block. Publishing
+was processed, and what was produced — using an OGC Block. Publishing
 this chain as linked data makes the indicator's methodology transparent,
 verifiable, and reusable by both people and machines. Once the chain is written
 and validated, we will upload and publish it using a locally deployed OGC
@@ -41,7 +41,7 @@ Definitions Service.
 ## What you will learn
 
 - How to deploy the OGC Definitions Service using Docker
-- How to describe a computed indicator as a provenance chain with OGC Building Blocks
+- How to describe a computed indicator as a provenance chain with OGC Blocks
 - How to validate and semantically uplift a JSON document using `bblocks-client-python`
 - How to upload data to Apache Fuseki and browse it via the Prez interface
 

@@ -9,16 +9,16 @@ slug: /applied-ogc-rainbow/2-define-the-indicator
 In this section we describe the Composite Drought Indicator as a
 **provenance chain**: a machine-readable record of which observations were
 used and how the indicator was derived from them. Rather than writing the
-chain in an ad-hoc format, we use an **OGC Building Block** that provides a
+chain in an ad-hoc format, we use an **OGC Block** that provides a
 shared schema, validation rules, and a JSON-LD context — so the document we
 produce can be unambiguously interpreted by any system that understands the
 same standard.
 
-## The Provenance Chain OGC Building Block
+## The Provenance Chain OGC Block
 
-OGC Building Blocks are reusable specification components that
+OGC Blocks are reusable specification components that
 provide a schema, JSON-LD context, and validation rules for a given data
-structure. We will use the **Provenance Chain BBlock**, which is based on
+structure. We will use the **Provenance Chain OGC Block**, which is based on
 the W3C PROV-O ontology and extends it for geospatial use.
 
 ![OGC Block for provenance schema](./assets/bblock-prov-schema.png)
@@ -97,9 +97,9 @@ activity that produced it. Inside this block we describe the computation:
 
 The `bblocks-client-python` library does two things:
 
-1. **Validates** the document against the BBlock's JSON Schema, catching
+1. **Validates** the document against the OGC Block's JSON Schema, catching
    structural errors before the data goes anywhere.
-2. **Semantically uplifts** it: applies the BBlock's JSON-LD context to the
+2. **Semantically uplifts** it: applies the Block's JSON-LD context to the
    document, turning the plain JSON property names into fully qualified RDF
    URIs. For example, `wasGeneratedBy` becomes `prov:wasGeneratedBy`, and
    `used` becomes `prov:used`. The result is a proper RDF graph that Fuseki
@@ -142,7 +142,7 @@ from ogc.bblocks.validate import validate_json
 from ogc.bblocks.semantic_uplift import uplift_json
 import json
 
-# Load the provenance chain building block
+# Load the provenance chain block
 register = load_register(
     "https://ogcincubator.github.io/bblock-prov-schema/build/register.json"
 )
