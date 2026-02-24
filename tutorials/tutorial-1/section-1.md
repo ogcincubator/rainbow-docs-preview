@@ -50,6 +50,7 @@ services:
 
   fuseki:
     image: dockerogc/fuseki
+    platform: linux/amd64
     environment:
       # Change the admin password
       ADMIN_PASSWORD: "**CHANGE ME**"
@@ -74,6 +75,7 @@ services:
 
   prez:
     image: dockerogc/prez
+    platform: linux/amd64
     depends_on:
       fuseki:
         condition: service_healthy
@@ -95,6 +97,7 @@ services:
 
   prez-ui:
     image: ghcr.io/ogcincubator/ogc-prez-ui
+    platform: linux/amd64
     depends_on:
       prez:
         condition: service_started
@@ -106,6 +109,7 @@ services:
 
   nginx-ld:
     image: dockerogc/nginx-ld
+    platform: linux/amd64
     depends_on:
       - prez
       - prez-ui
