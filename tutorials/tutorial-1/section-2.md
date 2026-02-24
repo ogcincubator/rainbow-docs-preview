@@ -46,30 +46,29 @@ Create a file called `cdi-indicator.json`. The document describes:
 
 ```json
 {
-  "id": "indicators/cdi/station-alpha/2024-07",
-  "type": "Feature",
-  "featureType": "CompositeIndicator",
-  "name": "Composite Drought Indicator – Station Alpha – July 2024",
+  "id": "indicators/cdi",
+  "type": "CompositeIndicator",
+  "provType": "Entity",
+  "name": "Composite Drought Indicator",
   "wasGeneratedBy": {
-    "id": "act/cdi-computation/station-alpha/2024-07",
+    "id": "act/cdi-computation",
     "activityType": "CompositeIndicatorComputation",
-    "name": "CDI computation – Station Alpha – July 2024",
-    "endedAtTime": "2024-08-01T00:00:00Z",
+    "name": "CDI computation",
     "used": [
       {
-        "id": "obs/soil-moisture-anomaly/station-alpha/2024-07",
-        "featureType": "SoilMoistureAnomaly",
-        "name": "Soil Moisture Anomaly – Station Alpha – July 2024"
+        "id": "obs/soil-moisture-anomaly", 
+        "type": "ObservedProperty",
+        "name": "Soil Moisture Anomaly"
       },
       {
-        "id": "obs/rainfall-anomaly/station-alpha/2024-07",
-        "featureType": "RainfallAnomaly",
-        "name": "Rainfall Anomaly – Station Alpha – July 2024"
+        "id": "obs/rainfall-anomaly",
+        "type": "ObservedProperty",
+        "name": "Rainfall Anomaly"
       },
       {
-        "id": "obs/vegetation-condition-anomaly/station-alpha/2024-07",
-        "featureType": "VegetationConditionAnomaly",
-        "name": "Vegetation Condition Anomaly – Station Alpha – July 2024"
+        "id": "obs/vegetation-condition-anomaly",
+        "type": "ObservedProperty",
+        "name": "Vegetation Condition Anomaly"
       }
     ]
   }
@@ -82,16 +81,21 @@ Let's walk through the structure:
 below), this will be resolved against a base URI to produce the full linked data
 URI for this resource.
 
-**`type` / `featureType`** — `type: "Feature"` follows the GeoJSON-based
-structure expected by the BBlock. `featureType` carries the semantic type of the
-entity, which the JSON-LD context maps to a URI in the ontology.
+**`type` / `provType`** — `provType: "Entity"` explicitly declares that the
+root-level element is a PROV-O Entity. `type` carries the specific semantic type of the
+entity.
+
+:::note Type URIs
+In a real-world situation, the `type`s used here (`Indicator`, `ObservedProperty`) would
+be either full URIs or JSON-LD terms defined somewhere (e.g., in a specialization of the
+provenance OGC Block). In our example, these types will not be part of the output RDF graph.
+:::
 
 **`wasGeneratedBy`** — a PROV-O property linking the output entity to the
 activity that produced it. Inside this block we describe the computation:
 - `activityType` identifies the kind of computation performed.
-- `endedAtTime` records when the activity finished.
-- `used` lists the input entities that the activity consumed — in our case, the
-  three observations.
+- `used` lists the input entities that the activity consumed (in our case, the
+  three observations).
 
 ## Validating and uplifting with bblocks-client-python
 
