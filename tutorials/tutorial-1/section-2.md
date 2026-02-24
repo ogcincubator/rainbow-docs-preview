@@ -44,6 +44,27 @@ Create a file called `cdi-indicator.json`. The document describes:
 2. The **computation activity** that generated it
 3. The three **input entities** (observations) that the activity used
 
+```mermaid
+graph LR
+    sma(["Soil Moisture Anomaly"])
+    ra(["Rainfall Anomaly"])
+    vca(["Vegetation Condition Anomaly"])
+
+    act["CDI Computation<br/>CompositeIndicatorComputation"]
+
+    cdi(["Composite Drought Indicator"])
+
+    act -- "prov:used" --> sma
+    act -- "prov:used" --> ra
+    act -- "prov:used" --> vca
+    cdi -- "prov:wasGeneratedBy" --> act
+
+    classDef entity fill:#FFFFCC,stroke:#999900
+    classDef activity fill:#CFE2FF,stroke:#6699FF
+    class sma,ra,vca,cdi entity
+    class act activity
+```
+
 ```json
 {
   "id": "indicators/cdi",
