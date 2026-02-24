@@ -40,6 +40,33 @@ Docker Compose creates automatically. From the outside, only two ports are
 exposed to your machine: **3030** for the Fuseki admin interface and **8080**
 for the public-facing entry point (nginx-ld).
 
+```mermaid
+graph TD
+    client(["Browser / HTTP client"])
+
+    subgraph host["Host machine"]
+        subgraph docker["Docker Compose network"]
+            nginx["**nginx-ld**<br/>Reverse proxy &amp;<br/>linked data redirects"]
+            prez["**Prez**<br/>OGC API backend"]
+            prezui["**Prez UI**<br/>Web frontend"]
+            fuseki["**Apache Fuseki**<br/>Triplestore"]
+            volume[("./fuseki-data")]
+        end
+        p8080(["port 8080"])
+        p3030(["port 3030"])
+    end
+
+    client -- "public entry point" --> p8080
+    client -- "admin UI" --> p3030
+    p8080 --> nginx
+    p3030 --> fuseki
+    nginx -- "/prez/ (browse)" --> prezui
+    nginx -- "/prez-b/ (API)" --> prez
+    prez -- "SPARQL" --> fuseki
+    prezui -- "/prez-b/ (API)" --> prez
+    fuseki -. "data volume" .- volume
+```
+
 ## Creating a docker-compose.yml
 
 Create a new directory for this tutorial and inside it create a file called
