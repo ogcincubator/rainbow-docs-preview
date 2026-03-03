@@ -379,7 +379,7 @@ in two steps:
 2. **SPARQL fallback** — if direct resolution fails (most commonly because the
    vocabulary server does not send CORS headers, which prevents browser-side
    requests), the UI queries the OGC development SPARQL endpoint configured in
-   `fallback_sparql_endpoint` (`defs-dev.opengis.net/fuseki/sparql`). For
+   `fallback_sparql_endpoint` (`https://defs-dev.opengis.net/fuseki/sparql`). For
    properties known to that endpoint — such as SOSA terms like `sosa:resultTime`
    or other standard OGC vocabulary terms — the label is displayed alongside
    the value, and hovering reveals the full description.
