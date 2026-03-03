@@ -123,9 +123,29 @@ Remove-Item -Recurse -Force _sources\myFeature, _sources\mySchema
 
 Our block will live at `_sources/airQualitySensor/`. Create it:
 
+<Tabs groupId="os">
+<TabItem value="linux" label="Linux">
+
 ```bash
 mkdir _sources/airQualitySensor
 ```
+
+</TabItem>
+<TabItem value="macos" label="macOS">
+
+```bash
+mkdir _sources/airQualitySensor
+```
+
+</TabItem>
+<TabItem value="windows" label="Windows">
+
+```powershell
+mkdir _sources\airQualitySensor
+```
+
+</TabItem>
+</Tabs>
 
 :::note About `_sources/`
 The `_sources/` directory is not an arbitrary name. It is the designated location

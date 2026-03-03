@@ -62,7 +62,7 @@ Create a new file called `sensors.geojson`:
         "serialNumber": "AQS-2024-0042",
         "hasObservations": [
           {
-            "observedProperty": "http://vocab.nerc.ac.uk/standard_name/mass_concentration_of_nitrogen_dioxide_in_air/",
+            "observedProperty": "https://w3id.org/ad4gd/air-quality/properties/NO2",
             "hasResult": {
               "http://qudt.org/schema/qudt/value": 42.7,
               "http://qudt.org/schema/qudt/hasUnit": { "@id": "http://qudt.org/vocab/unit/MicroGM-PER-M3" }
@@ -70,7 +70,7 @@ Create a new file called `sensors.geojson`:
             "resultTime": "2024-06-01T12:00:00Z"
           },
           {
-            "observedProperty": "http://vocab.nerc.ac.uk/standard_name/mass_concentration_of_pm10_ambient_aerosol_particles_in_air/",
+            "observedProperty": "https://w3id.org/ad4gd/air-quality/properties/pm10",
             "hasResult": {
               "http://qudt.org/schema/qudt/value": 18.3,
               "http://qudt.org/schema/qudt/hasUnit": { "@id": "http://qudt.org/vocab/unit/MicroGM-PER-M3" }
@@ -139,14 +139,22 @@ the important part for this tutorial is the `linked-data` block at the end.
 server:
   bind:
     host: 0.0.0.0
+    # Port 80 is the port pygeoapi listens on *inside* the container.
+    # We map it to 5000 on the host with -p 5000:80 in the docker run command.
     port: 80
+  # The public URL of this service. pygeoapi uses this to build self-referencing
+  # links in responses (e.g. the "self" link in a feature, or the item URL used
+  # by replace_id_field). Must match the address clients will use to reach it.
   url: http://localhost:5000
   mimetype: application/json; charset=UTF-8
   encoding: utf-8
   gzip: false
   language: en-US
+  # Allow cross-origin requests so browser clients on other domains can query
+  # this API directly.
   cors: true
   pretty_print: true
+  # Default page size for collection item requests.
   limit: 10
   map:
     url: https://tile.openstreetmap.org/{z}/{x}/{y}.png
@@ -170,9 +178,10 @@ metadata:
     name: CC-BY 4.0 license
     url: https://creativecommons.org/licenses/by/4.0/
   provider:
-    name: My Organisation
+    name: My Organization
     url: https://example.com
   contact:
+    name: John Doe
     email: you@example.com
     url: https://example.com
 
@@ -191,9 +200,12 @@ resources:
     providers:
       - type: feature
         name: GeoJSON
-        # The data path is inside the container. We will mount data/ to /data.
+        # The data path is inside the container. We mount data/ to /data
+        # with -v "$(pwd)/data:/data" in the docker run command.
         data: /data/sensors.geojson
+        # The feature field to use as the item identifier in API URLs.
         id_field: id
+        # The feature field displayed as the item title in the UI.
         title_field: name
 
     # ------------------------------------------------------------------
@@ -235,7 +247,7 @@ resources:
       # the UI to look up the label and description of vocabulary URIs when
       # they cannot be resolved directly (e.g. due to CORS restrictions).
       # Use an endpoint that serves the vocabularies referenced in your data.
-      fallback_sparql_endpoint: https://defs.opengis.net/vocprez/sparql
+      fallback_sparql_endpoint: https://defs-dev.opengis.net/fuseki/sparql
 ```
 
 Replace `{your-github-username}` with your actual GitHub username before
@@ -330,17 +342,9 @@ You will see the `Station Alpha` feature returned as a GeoJSON FeatureCollection
 Click through to the individual item:
 [http://localhost:5000/collections/air-quality-sensors/items/stations%2Falpha](http://localhost:5000/collections/air-quality-sensors/items/stations%2Falpha)
 
-### The JSON-LD representation
-
-Request the JSON-LD representation by adding `?f=jsonld` to the item URL or
-by sending an `Accept: application/ld+json` header:
-
-```bash
-curl -s "http://localhost:5000/collections/air-quality-sensors/items/stations%2Falpha?f=jsonld" | python -m json.tool
-```
-
-The response will be standard GeoJSON with an injected `@context` array at the
-top level, pointing at our block's published context file:
+The custom image unifies the JSON and JSON-LD representations: every response
+for this feature already includes an injected `@context` array pointing at our
+block's published context file, regardless of how it is requested:
 
 ```json
 {
@@ -364,47 +368,53 @@ this URI will land on a machine-readable description of the resource.
 
 ### Semantic property enrichment
 
-The custom pygeoapi image renders a UI page for each feature that goes beyond
-the raw JSON. Open the feature in your browser:
+Beyond the raw data, the custom pygeoapi image renders each feature page with
+resolved property labels and descriptions. For every field that maps to a URI
+in the JSON-LD context, the UI attempts to retrieve its label and description
+in two steps:
 
-```
-http://localhost:5000/collections/air-quality-sensors/items/stations%2Falpha
-```
+1. **Direct URI resolution** — the browser fetches the property URI directly.
+   If the vocabulary server returns a usable response, the label and description
+   are extracted from it.
+2. **SPARQL fallback** — if direct resolution fails (most commonly because the
+   vocabulary server does not send CORS headers, which prevents browser-side
+   requests), the UI queries the OGC development SPARQL endpoint configured in
+   `fallback_sparql_endpoint` (`defs-dev.opengis.net/fuseki/sparql`). For
+   properties known to that endpoint — such as SOSA terms like `sosa:resultTime`
+   or other standard OGC vocabulary terms — the label is displayed alongside
+   the value, and hovering reveals the full description.
 
-The properties panel shows not just the field names and values but also attempts
-to resolve each property's URI via the `fallback_sparql_endpoint`. For
-properties whose URIs are known to the SPARQL endpoint (for example, SOSA
-properties like `sosa:resultTime` or standard terms from OGC vocabularies),
-the display will show the human-readable label and description alongside the
-value — automatically, without any additional configuration.
+![pygeoapi feature view with resolved property labels and descriptions](./assets/pygeoapi-resolved.object.png)
 
 This is the direct payoff of the JSON-LD context in our block: because every
 field maps to a URI, the system knows *what* each value means and can retrieve
-authoritative documentation for it from the vocabulary service. The same data
-can now be presented meaningfully to a human viewer without any domain-specific
+authoritative documentation for it automatically — without any domain-specific
 display logic.
 
 ```mermaid
 graph LR
     feature["Feature JSON<br/>(sensor.json)"]
     context["JSON-LD Context<br/>(from block)"]
-    ld["JSON-LD Response<br/>(context + data)"]
-    sparql["SPARQL Endpoint<br/>(vocabulary service)"]
-    ui["pygeoapi UI<br/>with resolved labels"]
+    response["Response<br/>(feature + @context)"]
+    vocab["Vocabulary URI<br/>(direct resolution)"]
+    sparql["OGC SPARQL endpoint<br/>(fallback)"]
+    ui["pygeoapi UI<br/>labels + descriptions"]
 
-    feature -- "served by pygeoapi" --> ld
-    context -- "injected into response" --> ld
-    ld -- "property URIs looked up" --> sparql
-    sparql -- "labels + descriptions" --> ui
-    ld --> ui
+    feature -- "served by pygeoapi" --> response
+    context -- "injected into response" --> response
+    response -- "property URIs resolved" --> vocab
+    vocab -- "on CORS failure" --> sparql
+    vocab -- "label + description" --> ui
+    sparql -- "label + description" --> ui
+    response --> ui
 ```
 
 ---
 
 ## Epilogue: linked data in the real world
 
-This tutorial has used placeholder URIs (`https://example.com/sensors/`,
-`https://vocab.example.org/...`) and a local deployment. Before taking this
+This tutorial has used a placeholder base URI (`https://example.com/sensors/`)
+and a local deployment. Before taking this
 pattern into production, there are a few practical considerations worth keeping
 in mind.
 
@@ -417,10 +427,27 @@ invisible to external clients. This is expected for development, but means you
 cannot share links and expect them to work until the service is deployed at a
 public address.
 
+There is a subtler problem too: even when testing locally yourself, the URIs
+embedded in your data will be resolved against the *production* namespace you
+have chosen — for example `https://data.myorg.example/sensors/stations/alpha`.
+If that address is not yet live, any tool that tries to follow those URIs (a
+linked data browser, a SPARQL crawler, a validator checking dereferenceability)
+will receive a 404, regardless of whether your local container is running
+perfectly.
+
+One common strategy for previewing the full resolution cycle before going live
+is to use a **local HTTP proxy** (such as [mitmproxy](https://mitmproxy.org/)
+or a custom nginx rule) that intercepts requests to your production domain and
+redirects them to `localhost`. This lets you test the complete lifecycle —
+including URI dereferencing, content negotiation, and linked data browser
+rendering — without exposing anything publicly. The trade-off is that the proxy
+must be configured on every machine involved in the test.
+
 Testing the full linked data lifecycle (publish a URI → resolve it → retrieve
-RDF → follow further links) requires a publicly accessible deployment, not just
-a local container. Reserve this step for when the data model is stable and you
-are ready to commit to a URI namespace.
+RDF → follow further links) in a fully representative way therefore requires
+either a publicly accessible deployment or a deliberately configured proxy
+environment. Reserve the former for when the data model is stable and you are
+ready to commit to a URI namespace.
 
 ### Persistent, resolvable identifiers
 

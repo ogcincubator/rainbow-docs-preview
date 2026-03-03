@@ -33,7 +33,7 @@ quality monitoring station with two observations:
     "serialNumber": "AQS-2024-0042",
     "hasObservations": [
       {
-        "observedProperty": "http://vocab.nerc.ac.uk/standard_name/mass_concentration_of_nitrogen_dioxide_in_air/",
+        "observedProperty": "https://w3id.org/ad4gd/air-quality/properties/NO2",
         "hasResult": {
           "http://qudt.org/schema/qudt/value": 42.7,
           "http://qudt.org/schema/qudt/hasUnit": { "@id": "http://qudt.org/vocab/unit/MicroGM-PER-M3" }
@@ -41,7 +41,7 @@ quality monitoring station with two observations:
         "resultTime": "2024-06-01T12:00:00Z"
       },
       {
-        "observedProperty": "http://vocab.nerc.ac.uk/standard_name/mass_concentration_of_pm10_ambient_aerosol_particles_in_air/",
+        "observedProperty": "https://w3id.org/ad4gd/air-quality/properties/pm10",
         "hasResult": {
           "http://qudt.org/schema/qudt/value": 18.3,
           "http://qudt.org/schema/qudt/hasUnit": { "@id": "http://qudt.org/vocab/unit/MicroGM-PER-M3" }
@@ -71,10 +71,10 @@ inherits this requirement from the SOSA Observation block). Here we use
 value and its unit.
 
 **`observedProperty`** — a URI that identifies *what* was measured. We use
-[CF Standard Names](https://cfconventions.org/) served by the
-[NERC Vocabulary Server](https://vocab.nerc.ac.uk/): resolving either URI
-returns a human-readable description of the quantity; an RDF client would
-receive a machine-readable vocabulary entry.
+sample property URIs from the [AD4GD project](https://ad4gd.eu/) air quality
+vocabulary (`w3id.org/ad4gd/air-quality/properties/...`). These are persistent,
+dereferenceable identifiers: following either URI returns a description of the
+quantity being measured.
 
 **`hasResult`** — a structured result object rather than a bare scalar.
 Because [QUDT](https://qudt.org/) prefixes are not defined in the SOSA block's
@@ -88,13 +88,18 @@ are not declared in any active context:
   as an RDF resource rather than a plain string literal
 
 :::note Choosing vocabularies for `observedProperty`
-CF Standard Names are a natural fit for atmospheric observations, but your
-domain may call for a different vocabulary. Other options for environmental
-data include [QUDT Quantity Kinds](https://qudt.org/vocab/quantitykind/),
-the [INSPIRE Feature Concept Dictionary](https://inspire.ec.europa.eu/featureconcept),
-and [EnvThes](https://vocabs.lter-europe.net/envthes/). The key principle is
-the same regardless of which vocabulary you use: the URI should be
-dereferenceable and point to an authoritative definition of the concept.
+The URIs used here are sample properties from the
+[AD4GD project](https://ad4gd.eu/) air quality vocabulary, chosen for
+illustration. In a real-world deployment you would select URIs from an
+authoritative, domain-appropriate vocabulary — for example
+[CF Standard Names](https://cfconventions.org/) via the
+[NERC Vocabulary Server](https://vocab.nerc.ac.uk/) for atmospheric data,
+[QUDT Quantity Kinds](https://qudt.org/vocab/quantitykind/) for physical
+quantities, the [INSPIRE Feature Concept Dictionary](https://inspire.ec.europa.eu/featureconcept)
+for INSPIRE-regulated datasets, or [EnvThes](https://vocabs.lter-europe.net/envthes/)
+for ecological and environmental terms. The key principle is the same
+regardless of which vocabulary you choose: the URI should be dereferenceable
+and point to an authoritative definition of the concept.
 :::
 
 ## Set up a Python virtual environment
@@ -267,7 +272,7 @@ format. The output will look roughly like this:
         <http://qudt.org/schema/qudt/value> 4.27e+01
     ] ;
     sosa:observedProperty
-        <http://vocab.nerc.ac.uk/standard_name/mass_concentration_of_nitrogen_dioxide_in_air/> ;
+        <https://w3id.org/ad4gd/air-quality/properties/NO2> ;
     sosa:resultTime "2024-06-01T12:00:00Z"^^xsd:dateTime .
 
 <https://example.com/sensors/stations/alpha/hasObservations/1>
@@ -276,7 +281,7 @@ format. The output will look roughly like this:
         <http://qudt.org/schema/qudt/value> 1.83e+01
     ] ;
     sosa:observedProperty
-        <http://vocab.nerc.ac.uk/standard_name/mass_concentration_of_pm10_ambient_aerosol_particles_in_air/> ;
+        <https://w3id.org/ad4gd/air-quality/properties/pm10> ;
     sosa:resultTime "2024-06-01T12:00:00Z"^^xsd:dateTime .
 ```
 
@@ -294,9 +299,9 @@ Notice what has happened:
   `<http://qudt.org/schema/qudt/hasUnit>` — exactly as written in the JSON
   source. The unit, declared with `{"@id": "..."}`, resolves to a URI resource
   rather than a string literal.
-- The `observedProperty` values are dereferenceable CF Standard Name URIs.
-  Any system familiar with the NERC Vocabulary Server can resolve them to
-  retrieve authoritative definitions of the quantities being measured.
+- The `observedProperty` values are dereferenceable URIs from the AD4GD air
+  quality vocabulary. Any linked data client can follow them to retrieve a
+  definition of the quantity being measured.
 
 The plain JSON property names are gone; what remains is an unambiguous,
 machine-readable graph of statements that any RDF-capable system can interpret,
