@@ -182,6 +182,9 @@ descriptive properties. Create `_sources/airQualitySensor/bblock.json`:
   "version": "0.1",
   "dateOfLastChange": "2024-01-01",
   "scope": "unstable",
+  "isProfileOf": [
+    "ogc.geo.features.feature"
+  ],
   "tags": [
     "air-quality",
     "sensors",
@@ -201,6 +204,12 @@ A few things worth noting:
   path.
 - `status: "under-development"` is appropriate for a new block that has not yet
   been reviewed or formally adopted.
+- `isProfileOf` declares which blocks this block specializes. Listing
+  `ogc.geo.features.feature` here makes the inheritance relationship explicit
+  and machine-readable: the postprocessor records it in the published register,
+  and the viewer displays it as a navigable dependency graph.
+
+![OGC Block detail page — Dependencies tab showing the block inheritance graph](./assets/ogc-block-dependencies.png)
 
 ### `description.md` — documentation
 
@@ -465,6 +474,12 @@ Click on the block to open its detail page. Explore the tabs:
   ```
   http://localhost:9090/register/build-local/annotated/tutorial/sensors/airQualitySensor/context.jsonld
   ```
+- **Dependencies** — shows the blocks that this block profiles or imports,
+  derived from `isProfileOf` and the `imports` in `bblocks-config.yaml`. The
+  graph shows `airQualitySensor` depending on the OGC GeoJSON Feature block,
+  which in turn depends on further standard blocks.
+
+![OGC Block detail page — Semantic Uplift tab showing the published JSON-LD context URL](./assets/ogc-block-semantic-uplift.png)
 
 Once you are satisfied with the output, stop the viewer with **Ctrl+C** and the
 postprocessor container will already have exited.
@@ -492,6 +507,8 @@ A successful run will end with all steps showing green check marks. The workflow
 2. Commits the generated `build/` artifacts back to the repository.
 3. Publishes the `build/` directory to GitHub Pages.
 
+![GitHub Actions workflow run showing all steps completed successfully](./assets/github-actions-run-ok.png)
+
 If the run fails, the log output will pinpoint the cause.
 
 ## Browse the published block
@@ -505,10 +522,9 @@ https://{your-github-username}.github.io/my-bblocks-register/
 
 Browse to that URL to see the OGC Blocks viewer rendered from the published
 register. The `Air Quality Sensor Station` block should appear, with the same
-tabs you saw locally.
-
-Open the **Semantic Uplift** tab and note the URL of the published JSON-LD
-context file. It will follow this pattern:
+tabs you explored locally. Open the **Semantic Uplift** tab (see screenshot
+above) and note the URL of the published JSON-LD context file. It will follow
+this pattern:
 
 ```
 https://{your-github-username}.github.io/my-bblocks-register/build/annotated/tutorial/sensors/airQualitySensor/context.jsonld
