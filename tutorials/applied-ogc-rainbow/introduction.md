@@ -1,6 +1,7 @@
 ---
 sidebar_position: 1
-title: Introduction
+title: "Applied OGC RAINBOW: Introduction"
+sidebar_label: Introduction
 slug: /applied-ogc-rainbow/introduction
 ---
 
