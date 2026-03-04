@@ -6,9 +6,9 @@ const config = {
   title: 'OGC RAINBOW',
   tagline: 'Documentation and Tutorials',
   url: 'https://ogcincubator.github.io',
-  baseUrl: '/rainbow-docs/',
+  baseUrl: process.env.BASE_URL ?? '/rainbow-docs/',
   organizationName: 'ogcincubator',
-  projectName: 'rainbow-docs',
+  projectName: process.env.REPO_NAME ?? 'rainbow-docs',
 
   onBrokenLinks: 'throw',
   markdown: {
