@@ -2,6 +2,8 @@ import React from 'react';
 import clsx from 'clsx';
 import styles from './styles.module.css';
 
+import { marked } from 'marked';
+
 /**
  * A full-width homepage section.
  *
@@ -21,7 +23,10 @@ export default function HomepageSection({ overline, title, lead, alt, navy, cent
           <div className={clsx(styles.header, center && styles.headerCenter)}>
             {overline && <span className={styles.overline}>{overline}</span>}
             {title && <h2 className={styles.title}>{title}</h2>}
-            {lead && <p className={styles.lead}>{lead}</p>}
+            {lead && (typeof lead === 'string'
+              ? <p className={styles.lead} dangerouslySetInnerHTML={{ __html: marked.parseInline(lead) }} />
+              : <p className={styles.lead}>{lead}</p>
+            )}
           </div>
         )}
         <div className={styles.body}>{children}</div>
