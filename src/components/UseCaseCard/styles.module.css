@@ -1,0 +1,86 @@
+.card {
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: var(--ifm-card-border-radius);
+  margin-bottom: 2rem;
+  overflow: hidden;
+  background: var(--ifm-card-background-color);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+/* ── Inner wrapper – provides body padding ───────────────────────────── */
+
+.inner {
+  padding: 0 1.75rem 1.5rem;
+}
+
+/* ── Overline label (e.g. "Use Case A.1") ────────────────────────────── */
+
+.overline {
+  display: block;
+  background: var(--ogc-navy, #003859);
+  color: var(--ogc-teal, #00ADD8);
+  padding: 1.25rem 1.75rem 0.35rem;
+  margin: 0 -1.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ── Title heading – the ## heading passed as the first child ─────────── */
+/*    Negative horizontal margins make it bleed to the card edges.         */
+
+.inner > :global(h2) {
+  background: var(--ogc-navy, #003859);
+  color: #ffffff;
+  margin: 0 -1.75rem 1.5rem;
+  padding: 0 1.75rem 1.25rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.3;
+  border-bottom: none;
+}
+
+/* Hash-link (#) button inside the navy header */
+.inner > :global(h2 .hash-link) {
+  color: rgba(255, 255, 255, 0.4);
+}
+.inner > :global(h2:hover .hash-link),
+.inner > :global(h2 .hash-link:focus) {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ── Section headings inside the card body ───────────────────────────── */
+
+.inner > :global(h4) {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ogc-teal-dark, #0090B3);
+  margin-top: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Body paragraphs ─────────────────────────────────────────────────── */
+
+.inner > :global(p) {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+}
+
+.inner > :global(p:last-child) {
+  margin-bottom: 0;
+}
+
+/* ── Dark mode ───────────────────────────────────────────────────────── */
+
+[data-theme='dark'] .card {
+  border-color: var(--ifm-color-emphasis-300);
+}
+
+[data-theme='dark'] .inner > :global(h2),
+[data-theme='dark'] .overline {
+  background: var(--ogc-navy-deep, #002640);
+}

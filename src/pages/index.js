@@ -20,11 +20,11 @@ const sections = sectionCtx
   });
 
 const heroLinks = [
-  { label: 'Get started',              to: '/docs/intro',  primary: true },
-  { label: 'Explore the architecture', to: '#',            primary: false },
-  { label: 'See use cases',            to: '#',            primary: false },
-  { label: 'Follow the tutorials',     to: '/tutorials',   primary: false },
-  { label: 'Definition Service',       to: '#',            primary: false },
+  { label: 'Explore the architecture', to: '/docs/architecture' },
+  { label: 'Create a Building Block',            to: '/docs/building-blocks' },
+  { label: 'See use cases',            to: '/docs/use-cases' },
+  { label: 'Follow the tutorials',     to: '/tutorials' },
+  { label: 'Definitions Service',       to: 'https://defs.opengis.net/' },
 ];
 
 function HomepageHero() {

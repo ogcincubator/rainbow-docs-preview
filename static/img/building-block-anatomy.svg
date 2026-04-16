@@ -1,0 +1,48 @@
+<svg viewBox="0 0 700 440" xmlns="http://www.w3.org/2000/svg" style="max-width:620px;">
+  <!-- Main container -->
+  <rect x="50" y="20" width="600" height="400" rx="12" fill="none" stroke="#003859" stroke-width="2" stroke-dasharray="6 3"/>
+  <text x="350" y="50" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, \x27Segoe UI\x27, Roboto, sans-serif" font-size="16" font-weight="700" fill="#003859">Building Block</text>
+
+  <!-- Identity -->
+  <rect x="80" y="75" width="250" height="50" rx="6" fill="#003859"/>
+  <text x="205" y="105" text-anchor="middle" fill="#fff" font-family="-apple-system, BlinkMacSystemFont, \x27Segoe UI\x27, Roboto, sans-serif" font-size="13" font-weight="600">Identity (Registered URI)</text>
+
+  <!-- Scope -->
+  <rect x="370" y="75" width="250" height="50" rx="6" fill="#003859"/>
+  <text x="495" y="105" text-anchor="middle" fill="#fff" font-family="-apple-system, BlinkMacSystemFont, \x27Segoe UI\x27, Roboto, sans-serif" font-size="13" font-weight="600">Scope Definition</text>
+
+  <!-- Row 2 -->
+  <rect x="80" y="145" width="165" height="70" rx="6" fill="#00ADD8"/>
+  <text x="162" y="175" text-anchor="middle" fill="#fff" font-family="-apple-system, BlinkMacSystemFont, \x27Segoe UI\x27, Roboto, sans-serif" font-size="12" font-weight="600">Schema Fragments</text>
+  <text x="162" y="193" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="-apple-system, BlinkMacSystemFont, \x27Segoe UI\x27, Roboto, sans-serif" font-size="10">JSON Schema, XML Schema…</text>
+
+  <rect x="267" y="145" width="165" height="70" rx="6" fill="#00ADD8"/>
+  <text x="349" y="175" text-anchor="middle" fill="#fff" font-family="-apple-system, BlinkMacSystemFont, \x27Segoe UI\x27, Roboto, sans-serif" font-size="12" font-weight="600">Constraint Rules</text>
+  <text x="349" y="193" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="-apple-system, BlinkMacSystemFont, \x27Segoe UI\x27, Roboto, sans-serif" font-size="10">SHACL, Schematron…</text>
+
+  <rect x="455" y="145" width="165" height="70" rx="6" fill="#00ADD8"/>
+  <text x="537" y="175" text-anchor="middle" fill="#fff" font-family="-apple-system, BlinkMacSystemFont, \x27Segoe UI\x27, Roboto, sans-serif" font-size="12" font-weight="600">Semantic Mappings</text>
+  <text x="537" y="193" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="-apple-system, BlinkMacSystemFont, \x27Segoe UI\x27, Roboto, sans-serif" font-size="10">JSON-LD context</text>
+
+  <!-- Row 3 -->
+  <rect x="80" y="235" width="165" height="70" rx="6" fill="#0090B3"/>
+  <text x="162" y="265" text-anchor="middle" fill="#fff" font-family="-apple-system, BlinkMacSystemFont, \x27Segoe UI\x27, Roboto, sans-serif" font-size="12" font-weight="600">Transformation Specs</text>
+  <text x="162" y="283" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="-apple-system, BlinkMacSystemFont, \x27Segoe UI\x27, Roboto, sans-serif" font-size="10">JQ, SPARQL CONSTRUCT</text>
+
+  <rect x="267" y="235" width="165" height="70" rx="6" fill="#0090B3"/>
+  <text x="349" y="265" text-anchor="middle" fill="#fff" font-family="-apple-system, BlinkMacSystemFont, \x27Segoe UI\x27, Roboto, sans-serif" font-size="12" font-weight="600">Tested Examples</text>
+  <text x="349" y="283" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="-apple-system, BlinkMacSystemFont, \x27Segoe UI\x27, Roboto, sans-serif" font-size="10">CI-validated instances</text>
+
+  <rect x="455" y="235" width="165" height="70" rx="6" fill="#0090B3"/>
+  <text x="537" y="265" text-anchor="middle" fill="#fff" font-family="-apple-system, BlinkMacSystemFont, \x27Segoe UI\x27, Roboto, sans-serif" font-size="12" font-weight="600">Dependencies</text>
+  <text x="537" y="283" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="-apple-system, BlinkMacSystemFont, \x27Segoe UI\x27, Roboto, sans-serif" font-size="10">Other BBs + versions</text>
+
+  <!-- Row 4 -->
+  <rect x="80" y="325" width="250" height="70" rx="6" fill="#E87722"/>
+  <text x="205" y="355" text-anchor="middle" fill="#fff" font-family="-apple-system, BlinkMacSystemFont, \x27Segoe UI\x27, Roboto, sans-serif" font-size="12" font-weight="600">Human Documentation</text>
+  <text x="205" y="373" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="-apple-system, BlinkMacSystemFont, \x27Segoe UI\x27, Roboto, sans-serif" font-size="10">Derived from canonical forms</text>
+
+  <rect x="370" y="325" width="250" height="70" rx="6" fill="#E87722"/>
+  <text x="495" y="355" text-anchor="middle" fill="#fff" font-family="-apple-system, BlinkMacSystemFont, \x27Segoe UI\x27, Roboto, sans-serif" font-size="12" font-weight="600">Extension Point Specification</text>
+  <text x="495" y="373" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="-apple-system, BlinkMacSystemFont, \x27Segoe UI\x27, Roboto, sans-serif" font-size="10">How this BB can be extended</text>
+</svg>

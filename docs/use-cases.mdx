@@ -1,0 +1,301 @@
+---
+sidebar_position: 3
+title: Use Cases
+---
+
+import UseCaseCard from '@site/src/components/UseCaseCard';
+
+export const toc = [
+  { value: 'Offshore Wind Farm Policy Evaluation',         id: 'wind-farm',        level: 2 },
+  { value: 'Digital Building Permits',                     id: 'building-permits', level: 2 },
+  { value: 'Climate Data for Urban Planning & Forestry',   id: 'climate',          level: 2 },
+  { value: 'Biodiversity Reporting under EUDR',            id: 'biodiversity',     level: 2 },
+  { value: 'Defense Geointelligence',                      id: 'defense',          level: 2 },
+  { value: 'Integrated Cadastre, Land Use, and Deed',      id: 'cadastre',         level: 2 },
+  { value: 'Cross-Border Flood Risk Assessment',           id: 'flood-risk',       level: 2 },
+];
+
+Seven detailed examples demonstrating how machine-readable standards, profiles, building blocks,
+and registers solve real-world problems — and what becomes possible for AI agents.
+
+<UseCaseCard label="Use Case A.1">
+
+## Offshore Wind Farm Policy Evaluation {#wind-farm}
+
+#### The Problem
+
+A national government must evaluate cross-sectoral impacts of offshore wind energy policies:
+energy output versus targets, effects on commercial fishing yields, changes in coastal tourism
+revenue, displacement of bird migration corridors, and effects on seabed ecology. This requires
+defining composite indicators that aggregate measurements from completely different domains —
+energy production telemetry, AIS vessel tracking, species observation records, hotel booking
+statistics, and bathymetric surveys.
+
+Each domain uses its own feature types, observation models, spatial reference conventions, and
+temporal granularity. A marine biologist's "survey area" and a fisheries authority's "fishing
+zone" may overlap spatially but are defined in incompatible schemas.
+
+#### Building Block Decomposition
+
+An **Observation Building Block** (reused from OGC OMS) provides the semantic core. Its
+`context.jsonld` maps `observedProperty` to `sosa:observedProperty` and `unitOfMeasure` to
+`qudt:unit` — so an energy production reading in MWh and a fish catch weight in tonnes both
+carry machine-interpretable unit declarations through the same structural pattern.
+
+A **Wind Farm Feature Type Building Block** defines the schema for an offshore installation.
+A **Composite Indicator Building Block** defines a schema for policy indicators that formally
+declare inputs (references to other building blocks by URI), computation methods, output units,
+and temporal aggregation rules.
+
+#### Profile Layering
+
+Domain-specific profiles — Marine Ecology Observation Profile, Fisheries Observation Profile,
+Tourism Statistics Profile, Energy Production Profile — each constrain the base observation
+building block with their own vocabulary bindings and SHACL shapes. A **Wind Farm Policy
+Evaluation Profile** sits at the top, declaring dependencies on all four domain profiles plus
+the composite indicator building block.
+
+#### What Becomes Possible
+
+A policy analyst or AI agent can discover all relevant data sources, verify compatible semantics
+through common building blocks, compute composite indicators using formally defined formulas, and
+trace every result back to its source measurements with full provenance — all programmatically.
+
+</UseCaseCard>
+
+<UseCaseCard label="Use Case A.2">
+
+## Digital Building Permits {#building-permits}
+
+#### The Problem
+
+A developer in Stuttgart submits a building permit as a BIM model (IFC format). The municipality
+must check it against zoning regulations, setback requirements, height limits, floor-area ratios,
+fire safety, environmental constraints, and utility easements. Currently this takes weeks or
+months. Worse, the software vendor must create bespoke integrations for each of Germany's ~11,000
+municipalities because they use different terminology, data models, and regulatory structures. One
+municipality says "fences," another "parcel boundaries," a third "lot lines" — for the same
+concept.
+
+#### Building Block Decomposition
+
+A **Parcel Boundary Building Block** maps different municipal property names to the same RDF
+predicate through JSON-LD contexts — solving the terminology problem by construction. A
+**Building Footprint Building Block** defines the BIM-derived ground-level outline. Constraint
+building blocks — **Setback Constraint**, **Height Limit**, **Floor-Area Ratio**, **Fire Safety
+Clearance** — are rule building blocks whose SHACL shapes validate referential integrity.
+
+#### Profile Layering
+
+A **German National Building Regulation Profile** composes all constraint building blocks with
+national defaults (ETRS89/UTM, DHHN2016, BauNVO). A **Baden-Württemberg State Profile** adds
+Landesbauordnung fire safety rules and hillside building regulations. A **Stuttgart Municipal
+Profile** binds to local Bebauungsplan zones and flood designations. Software vendors build once
+against the national profile and adapt incrementally for each municipality.
+
+#### What Becomes Possible
+
+An AI-powered permit system retrieves the municipal profile, assembles the complete SHACL shape
+set, applies the IFC transform to extract the building footprint, retrieves the parcel geometry
+from the cadastral API, and produces a structured compliance report — referencing each constraint
+by its building block URI with pass/fail results.
+
+</UseCaseCard>
+
+<UseCaseCard label="Use Case A.3">
+
+## Climate Data for Urban Planning & Forestry {#climate}
+
+#### The Problem
+
+Climate models produce data at 12.5 km resolution in CF-NetCDF with domain-specific conventions
+(rotated pole grids, 360-day calendars, kg m⁻² s⁻¹ for precipitation). Urban planners need
+sub-kilometer climate indices linked to their municipal data; foresters need species growth
+projections at 50×50m resolution fused with soil, terrain, and satellite data. Neither community
+can use the raw science data.
+
+The gap is semantic, not just format. CF variable names ("tas", "pr") are opaque to planning
+software. CRS, calendars, units, and classification vocabularies all differ across climate
+science, EO, municipal GIS, and forest inventory systems.
+
+#### Building Block Decomposition
+
+Five building blocks: **Climate Variable** (CF Standard Names → URIs, QUDT units, calendar type
+declaration), **Climate Index** (computed indicators with declared algorithms and ensemble
+statistics), **Statistical Downscaling** (AI model registration with uncertainty quantification),
+**Forest Site Assessment** (species taxonomy URIs, soil classification, historical growth), and
+**Urban Climate Vulnerability** (morphology + population + exposure + composite index).
+
+#### What Becomes Possible
+
+A scalable pipeline where climate outputs are published once, transforms registered once, and new
+municipalities are onboarded by creating a profile rather than rebuilding the pipeline. Full
+machine-interpretable semantic chain for AI agents from raw climate model output to actionable
+local assessment.
+
+</UseCaseCard>
+
+<UseCaseCard label="Use Case A.4">
+
+## Biodiversity Reporting under EUDR {#biodiversity}
+
+#### The Problem
+
+The EU Deforestation Regulation requires linking a commodity's production location to a plot of
+land and demonstrating no association with deforestation. This sounds simple but requires
+connecting supply-chain actors, production units, geospatial boundaries, temporal baselines,
+forest interpretations, biodiversity indicators, evidence packages, and due diligence statements.
+Terms like "habitat extent" or "forest degradation" may sound concrete but are not defined
+precisely enough for consistent operational use.
+
+#### Why Building Block Decomposition Helps
+
+EUDR reporting is a combination of smaller recurring problems: identifying production plots,
+linking them to supply-chain assets, defining a forest baseline, expressing a biodiversity
+indicator, recording uncertainty, capturing provenance, and validating results. A building block
+approach makes assumptions visible, allows individual elements to evolve independently, and
+supports reuse across commodities, jurisdictions, and reporting contexts.
+
+#### Profiles Needed
+
+An **EUDR Compliance Profile** defines mandatory elements. **Commodity-specific profiles**
+(cocoa, coffee, soy, rubber, cattle, wood) address differing supply chains. **Biodiversity
+interpretation profiles** define which baseline, concepts, scale, and uncertainty reporting
+apply. **Jurisdictional/corporate profiles** capture national practices or company-specific
+commitments while preserving traceability.
+
+#### What Becomes Possible
+
+A company reports not only a conclusion but the exact baseline, interpretation profile, indicator
+definition, transformation chain, and provenance that produced it. Different providers can
+coexist without lock-in because their assumptions are explicit and comparable. AI systems support
+explanation, validation, and analysis because they no longer need to guess what the data means.
+
+</UseCaseCard>
+
+<UseCaseCard label="Use Case A.5">
+
+## Defense Geointelligence: Coalition Data Integration {#defense}
+
+#### The Problem
+
+A NATO-allied nation contributing to a multinational operation relies on commercial satellite
+imagery, terrain data from a partner nation, AI-extracted features from a third ally's systems,
+and its own ground-truth observations. All must be fused into a trusted common operational
+picture — in a secure, often air-gapped environment where internet-based discovery is unavailable.
+
+Each contributor uses different feature type catalogs, classification vocabularies (both data and
+security classification), coordinate reference systems, and positional accuracy conventions.
+Commercial providers are not bound by NATO STANAGs; AI-extracted features arrive with
+provider-specific taxonomy labels.
+
+#### Building Block Decomposition
+
+A **Feature Observation Building Block** provides the semantic foundation with mandatory CRS
+declaration, temporal validity, source characterization, and positional accuracy. A **Confidence
+and Trust Metadata Building Block** handles source reliability (adapting the NATO Admiralty Code
+as machine-readable URIs), AI model confidence scores, provenance chains, and information
+security classification. A **National Feature Data Dictionary Mapping Building Block** uses SKOS
+mapping predicates. A **Positional Accuracy Harmonization Building Block** canonicalizes between
+CEP, RMSE, CE90, and other conventions.
+
+#### Air-Gapped Operation
+
+Before deployment, the coalition's register infrastructure is replicated to a secure, air-gapped
+environment with all building block definitions, vocabulary registers, and transforms — each
+carrying provenance metadata with authoritative source URI, version, retrieval timestamp, and
+cryptographic hash. AI agents operate against the local cache exactly as they would against the
+networked register.
+
+#### What Becomes Possible
+
+An AI fusion system validates and harmonizes three data packages — commercial imagery, allied
+vector data, and ground-truth observations — using their respective profiles and transforms. For
+each feature in the fused product, the full provenance chain is recorded: source, profile,
+transform, original and harmonized accuracy, confidence rating, and whether any mapping involved
+approximation. Analysts can query: "show me all features where the feature type mapping was
+approximate" or "show me all elevation values transformed from a different vertical datum."
+
+</UseCaseCard>
+
+<UseCaseCard label="Use Case A.6">
+
+## Integrated Cadastre, Land Use, and Deed System {#cadastre}
+
+#### The Problem
+
+A country wants to unify its cadastral records (who owns which parcel), land use regulations
+(what activities are permitted), and deed registry (the legal chain of ownership) into an
+integrated system. Citizens, notaries, banks, tax authorities, and planning agencies all need
+different views of the same reality. Today, a human must manually cross-reference three systems
+with different identifiers, coordinate systems, and no machine-readable links between them.
+
+#### Building Block Decomposition
+
+A **Parcel Identifier Building Block** serves as the semantic anchor — the same parcel referenced
+in the cadastre, land use plan, and deed registry resolves to a single unambiguous identity. A
+**Parcel Geometry Building Block** defines survey-grade polygons with mandatory CRS and accuracy
+metadata. An **Ownership Record Building Block** defines ownership with encumbrances (mortgage,
+easement, usufruct as nested building blocks) and ISO 8601 temporal validity. A **Land Use
+Designation Building Block** binds categories to registered vocabularies.
+
+#### Cross-Domain Constraints
+
+A **National Integrated Land Administration Profile** adds SHACL constraints enforcing
+referential integrity across the three systems: every deed must reference an existing parcel;
+every land use designation must reference a temporally current geometry; every ownership transfer
+must reference both a valid deed and a parcel.
+
+#### What Becomes Possible
+
+A notary processing a property sale queries a single integrated view. An AI agent assisting with
+mortgage underwriting automatically verifies the parcel exists, is correctly delineated, has no
+conflicting encumbrances, and conforms to declared land use.
+
+</UseCaseCard>
+
+<UseCaseCard label="Use Case A.7">
+
+## Cross-Border Flood Risk Assessment {#flood-risk}
+
+#### The Problem
+
+The Rhine flows through Switzerland, France, Germany, and the Netherlands. An extreme rainfall
+event in the Swiss Alps requires a coordinated flood model that seamlessly combines terrain data,
+land cover, hydrological measurements, and critical infrastructure from all four countries —
+each using national coordinate reference systems, height systems, land cover classifications, and
+hydrological observation conventions.
+
+#### Building Block Decomposition
+
+A **Terrain Elevation Building Block** requires explicit declaration of both horizontal and
+vertical CRS — directly addressing the ellipsoidal vs. orthometric height ambiguity. A
+**Hydrological Observation Building Block** profiles OGC OMS for discharge rate, water level,
+and precipitation intensity with mandatory units and minimum 15-minute temporal resolution. A
+**Land Cover Building Block** carries classification system URI declarations enabling
+machine-readable vocabulary mapping.
+
+#### National Profiles and Registered Transforms
+
+Each country has its own terrain profile: Swiss (LV95 + LN02), German (ETRS89/UTM32 + DHHN2016),
+French (RGF93/Lambert-93 + NGF-IGN69), Dutch (Amersfoort/RD New + NAP). CRS transformations
+between national systems are registered with source profile, target profile, transformation
+method (EPSG code), and accuracy bounds — all tested against known control points in the CI
+pipeline.
+
+A vocabulary mapping transform converts between the four national land cover classification
+systems via SPARQL CONSTRUCT queries using a registered EAGLE mapping table. Imperfect mappings
+produce `skos:closeMatch` rather than `skos:exactMatch`, preserving information about mapping
+confidence.
+
+#### What Becomes Possible
+
+When heavy rainfall is forecast, an AI early warning system automatically discovers relevant
+national datasets, applies registered transformations to create a unified cross-border terrain
+and land cover model, retrieves and validates real-time hydrological observations from all four
+countries, applies temporal alignment to a common 15-minute grid, and feeds the unified dataset
+into the flood model. The entire provenance chain is traceable through building block URIs and
+register entries. Seamless flood risk maps across all four countries — produced in minutes rather
+than the weeks of manual harmonization currently required.
+
+</UseCaseCard>

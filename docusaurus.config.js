@@ -61,10 +61,19 @@ const config = {
         title: 'OGC RAINBOW',
         items: [
           {
-            type: 'docSidebar',
-            sidebarId: 'mainSidebar',
+            to: '/docs/architecture',
             position: 'right',
-            label: 'Docs',
+            label: 'Architecture',
+          },
+          {
+            to: '/docs/building-blocks',
+            position: 'right',
+            label: 'Building Blocks',
+          },
+          {
+            to: '/docs/use-cases',
+            position: 'right',
+            label: 'Use Cases',
           },
           {
             type: 'docSidebar',
@@ -72,6 +81,11 @@ const config = {
             docsPluginId: 'tutorials',
             position: 'right',
             label: 'Tutorials',
+          },
+          {
+            href: 'https://defs.opengis.net/',
+            position: 'right',
+            label: 'Definition Service',
           },
         ],
       },
@@ -81,7 +95,9 @@ const config = {
           {
             title: 'Documentation',
             items: [
-              { label: 'Introduction', to: '/docs/intro' },
+              { label: 'Architecture', to: '/docs/architecture' },
+              { label: 'Building Blocks', to: '/docs/building-blocks' },
+              { label: 'Use Cases', to: '/docs/use-cases' },
             ],
           },
           {
