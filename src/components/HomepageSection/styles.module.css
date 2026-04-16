@@ -1,0 +1,69 @@
+.section {
+  padding: 4.5rem 0;
+}
+
+.sectionAlt {
+  background-color: var(--homepage-alt-bg);
+}
+
+.sectionNavy {
+  background: linear-gradient(160deg, var(--ogc-navy-deep) 0%, var(--ogc-navy) 100%);
+  color: #fff;
+}
+
+.sectionNavy .title,
+.sectionNavy .lead {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.sectionNavy .overline {
+  color: var(--ogc-teal);
+}
+
+/* ── Section header ──────────────────────────────────────────────────── */
+
+.header {
+  max-width: 720px;
+  margin-bottom: 2rem;
+}
+
+.headerCenter {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.overline {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ifm-color-primary);
+  margin-bottom: 0.5rem;
+}
+
+.title {
+  font-size: 1.9rem;
+  line-height: 1.25;
+  margin-bottom: 0;
+}
+
+.lead {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  color: var(--ifm-color-emphasis-700);
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+/* ── Section body ────────────────────────────────────────────────────── */
+
+/* Constrain prose blocks to a readable line length.
+   Card grids and other block-level components manage their own width. */
+.body > :global(p),
+.body > :global(ul),
+.body > :global(ol) {
+  max-width: 720px;
+  color: var(--ifm-color-emphasis-700);
+}

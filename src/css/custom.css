@@ -6,6 +6,14 @@
 
 :root {
   --ifm-color-primary: #0066cc;
+  --homepage-alt-bg: #f5f7f9;
+
+  /* OGC brand colours */
+  --ogc-navy:       #003859;
+  --ogc-navy-deep:  #002640;
+  --ogc-teal:       #00ADD8;
+  --ogc-teal-dark:  #0090B3;
+  --ogc-orange:     #E87722;
   --ifm-color-primary-dark: #005cb8;
   --ifm-color-primary-darker: #0057ae;
   --ifm-color-primary-darkest: #00478f;
@@ -18,6 +26,7 @@
 
 [data-theme='dark'] {
   --ifm-color-primary: #4da6ff;
+  --homepage-alt-bg: #1a1e22;
   --ifm-color-primary-dark: #2e96ff;
   --ifm-color-primary-darker: #1e8eff;
   --ifm-color-primary-darkest: #0070e0;
@@ -29,4 +38,36 @@
 
 .docusaurus-mermaid-container {
   text-align: center;
+}
+
+/* ── Navbar ─────────────────────────────────────────────────────────── */
+
+:root {
+  --ifm-navbar-link-color:        var(--ogc-navy);
+  --ifm-navbar-link-hover-color:  var(--ogc-teal-dark);
+  --ifm-navbar-link-active-color: var(--ogc-navy);
+}
+
+/* Restore legible colours in dark mode */
+[data-theme='dark'] {
+  --ifm-navbar-link-color:        rgba(255, 255, 255, 0.85);
+  --ifm-navbar-link-hover-color:  #ffffff;
+  --ifm-navbar-link-active-color: #ffffff;
+}
+
+/* Align navbar content with the page container (same max-width + centering) */
+.navbar__inner {
+  max-width: var(--ifm-container-width-xl, 1320px);
+  margin: 0 auto;
+}
+
+/* Slightly smaller nav links */
+.navbar__link {
+  font-size: 0.9em;
+}
+
+/* Hide the colour-mode toggle on the homepage only.
+   aria-live="polite" is the only stable, non-hashed hook on that button. */
+body.page--home .navbar button[aria-live] {
+  display: none !important;
 }

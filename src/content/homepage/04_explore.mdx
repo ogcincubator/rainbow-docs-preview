@@ -1,0 +1,54 @@
+import CardGrid from '@site/src/components/CardGrid';
+
+export const meta = {
+  overline: 'Dive Deeper',
+  title: 'Explore the Ecosystem',
+  center: true,
+};
+
+export const cards = [
+  {
+    icon: '⚙',
+    variant: 'navy',
+    title: 'Architecture in Detail',
+    body: 'The anatomy of machine-readable standards, the profiling mechanism, building block composition patterns, and the federated register infrastructure.',
+    href: '#',
+  },
+  {
+    icon: '🧩',
+    variant: 'teal',
+    title: 'Building Blocks',
+    body: 'What building blocks are, how they compose, their internal anatomy, and how they enable extensibility across domains and communities.',
+    href: '#',
+  },
+  {
+    icon: '🗺',
+    variant: 'orange',
+    title: 'Use Cases',
+    body: 'Worked examples spanning wind energy policy, digital building permits, cross-border flood risk, biodiversity compliance, and coalition defense.',
+    href: '#',
+  },
+  {
+    icon: '📖',
+    variant: 'teal',
+    title: 'Tutorials',
+    body: 'Practical, hands-on tutorials that walk you through defining a specification, publishing it to a register, creating a profile, validating data, and discovering assets.',
+    href: '/tutorials',
+  },
+  {
+    icon: '🗄',
+    variant: 'navy',
+    title: 'Definition Service',
+    body: 'Everything about the OGC registers, how they work, how to query them, and how to deploy and operate your own federated register node.',
+    href: '#',
+  },
+  {
+    icon: '📢',
+    variant: 'orange',
+    title: 'News',
+    body: 'Latest updates on the machine-interpretable standards ecosystem, upcoming events, community contributions, and new building block releases.',
+    href: '#',
+  },
+];
+
+<CardGrid cards={cards} />

@@ -1,34 +1,60 @@
-.heroBanner {
-  padding: 4rem 0;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+
+.hero {
+  background: linear-gradient(160deg, var(--ogc-navy-deep) 0%, var(--ogc-navy) 50%, #004B6E 100%);
+  padding: 5rem 0 4.5rem;
+  color: #fff;
 }
 
-.buttons {
+.heroContainer {
+  /* The content sits in the left half on wider screens */
+}
+
+.heroContent {
+  max-width: 50%;
+}
+
+@media (max-width: 996px) {
+  .heroContent {
+    max-width: 100%;
+  }
+}
+
+.heroBadge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+  padding: 0.2em 0.65em;
+  margin-bottom: 1.25rem;
+}
+
+.heroTitle {
+  font-size: 2.6rem;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.heroLead {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 2rem;
+  max-width: 520px;
+}
+
+.heroButtons {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 1.5rem;
+  flex-wrap: wrap;
+  gap: 0.65rem;
 }
 
-.featuresSection {
-  padding: 3rem 0;
-}
-
-.featureCard {
-  padding: 1.5rem;
-  border-radius: 8px;
-  height: 100%;
-}
-
-.featureCard h3 {
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
-}
-
-.featureCard p {
-  color: var(--ifm-color-emphasis-700);
-  margin-bottom: 0.75rem;
+.heroBtn {
+  font-size: 0.9rem;
 }

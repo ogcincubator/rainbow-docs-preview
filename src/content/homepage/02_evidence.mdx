@@ -1,0 +1,34 @@
+import CardGrid from '@site/src/components/CardGrid';
+
+export const meta = {
+  overline: 'The Evidence',
+  title: 'The Cost of Ambiguity',
+  lead: 'These principles are not abstract ideals. They respond to a concrete and measurable problem: the cost of ambiguous, undeclared, or inconsistent semantics in data exchange.',
+};
+
+export const cards = [
+  {
+    icon: '$',
+    variant: 'orange',
+    title: '$3.1 Trillion per Year',
+    body: 'IBM estimates poor data quality costs the US economy $3.1 trillion annually. A significant share stems not from data being wrong, but from data whose meaning is unclear: values without declared units, formats, or reference systems.',
+  },
+  {
+    icon: '🛰',
+    variant: 'teal',
+    title: 'Mars Climate Orbiter',
+    body: 'Destroyed in 1999 because one system expressed thruster force in pound-force seconds while another expected newton-seconds. A $125 million loss from a single missing semantic declaration.',
+  },
+  {
+    icon: '🌊',
+    variant: 'navy',
+    title: 'Hurricane Katrina',
+    body: 'Emergency responders could not share geospatial data because agencies used incompatible coordinate reference systems. It took weeks to establish a functioning shared GIS while lives hung in the balance.',
+  },
+];
+
+The everyday reality of data exchange is full of semantic traps. A date transmitted as "03/04/25" means three different things in Europe, the United States, and Japan. An elevation of "120 m" is meaningless without specifying whether that is height above the mathematical ellipsoid or above mean sea level — a difference that can reach tens of meters. Coordinate reference system mismatches can introduce positional errors of up to 21 kilometers. The European INSPIRE Directive has demonstrated just how difficult semantic harmonization is at scale, despite more than fifteen years of effort and legally binding requirements.
+
+<CardGrid cards={cards} />
+
+Every one of these failures shares a common cause: the semantics of the data were not declared in a machine-readable form that both human implementers and automated systems could unambiguously interpret. **Standards exist to provide exactly these declarations.** The remainder of this site describes an architecture for making them work effectively for both audiences.

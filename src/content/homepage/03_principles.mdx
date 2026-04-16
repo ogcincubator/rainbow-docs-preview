@@ -1,0 +1,17 @@
+export const meta = {
+  overline: 'Core Framework',
+  title: 'Four Interconnected Principles',
+  lead: 'The question, then, is not whether we still need standards, but how we should do standards today so that they deliver semantic interoperability for both human and machine consumers.',
+};
+
+These requirements imply more than a better publication format. Standards must be uniquely identifiable and resolvable so that humans and machines can refer to the same artifact unambiguously. They must be adaptable to the needs of particular communities, jurisdictions, and applications, because interoperability at scale depends not only on shared base standards, but also on transparent ways to express local constraints, vocabulary bindings, and extensions without severing conformance to that shared base. Their content must be decomposable into reusable specification components that carry explicit meaning, constraints, examples, transformations, and dependencies. And all of these assets must be discoverable, traceable, and governable across organizational boundaries.
+
+This document elaborates an architectural approach that responds to these needs through four interconnected principles. Together, they create a composable, federated standards ecosystem in which standards are not merely published, but made operational — and in which the data and services derived from them become machine-interpretable as well.
+
+1. **Machine-Readable Standards** — Every standard — and every component within a standard — must be addressable, describable, and constrainable in a machine-readable form. Human-readable documents are derived from the canonical machine-readable form, not the other way around.
+
+2. **Profiling for Community Needs** — Every standard can be profiled — constrained, extended, and vocabulary-bound — for specific communities, jurisdictions, and applications. A profile is not a fork: it maintains a formal, testable inheritance chain to its base standard.
+
+3. **Composable Building Blocks** — Profiles and standards are composed of reusable specification components — schemas, constraints, semantic mappings, transformations, and examples — that can be independently versioned, validated, and reused across domains.
+
+4. **Interconnected Registers** — All assets — standards, profiles, building blocks, implementations, transformation engines, vocabularies, and validators — are stored in federated registers that enable discovery, reuse, provenance, and trust.

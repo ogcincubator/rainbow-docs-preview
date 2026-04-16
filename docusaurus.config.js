@@ -3,8 +3,8 @@ const { themes: prismThemes } = require('prism-react-renderer');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'OGC RAINBOW',
-  tagline: 'Documentation and Tutorials',
+  title: 'The Machine-Interpretable Standards Ecosystem',
+  tagline: 'Standards, Profiles, Building Blocks, and Registers — an architectural framework for composable, discoverable, and AI‑ready standards infrastructure.',
   url: 'https://ogcincubator.github.io',
   baseUrl: process.env.BASE_URL ?? '/rainbow-docs/',
   organizationName: 'ogcincubator',
@@ -63,14 +63,14 @@ const config = {
           {
             type: 'docSidebar',
             sidebarId: 'mainSidebar',
-            position: 'left',
+            position: 'right',
             label: 'Docs',
           },
           {
             type: 'docSidebar',
             sidebarId: 'tutorialsSidebar',
             docsPluginId: 'tutorials',
-            position: 'left',
+            position: 'right',
             label: 'Tutorials',
           },
         ],
@@ -93,7 +93,7 @@ const config = {
           {
             title: 'More',
             items: [
-              { label: 'OGC', href: 'https://www.ogc.org' },
+              { label: 'OGC website', href: 'https://www.ogc.org' },
             ],
           },
         ],
