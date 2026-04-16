@@ -43,6 +43,54 @@ static/img/                   ← images and SVGs referenced from docs
 
 ---
 
+## Editing the navigation
+
+### Navbar
+
+The navbar is configured in `docusaurus.config.js`, inside `themeConfig.navbar.items`. Each entry is an object in the array:
+
+```js
+{
+  to: '/docs/architecture',   // internal path (use `href` for external URLs)
+  position: 'right',          // 'left' or 'right'
+  label: 'Architecture',
+},
+```
+
+External links use `href` instead of `to`:
+
+```js
+{
+  href: 'https://defs.opengis.net/',
+  position: 'right',
+  label: 'Definition Service',
+},
+```
+
+- **Change a label** — edit the `label` string.
+- **Change a destination** — edit `to` (internal) or `href` (external).
+- **Reorder entries** — move objects up or down in the array.
+- **Add an entry** — add a new object to the array.
+- **Remove an entry** — delete its object.
+
+### Footer
+
+Footer links live in `themeConfig.footer.links` in the same file. The footer is organised into columns, each with a `title` and an `items` array:
+
+```js
+{
+  title: 'Documentation',
+  items: [
+    { label: 'Architecture',     to: '/docs/architecture' },
+    { label: 'Building Blocks',  to: '/docs/building-blocks' },
+  ],
+},
+```
+
+Add, remove, or reorder `items` entries the same way as navbar entries. Add or remove whole column objects to change the column layout.
+
+---
+
 ## Editing the homepage
 
 ### Site title and tagline
