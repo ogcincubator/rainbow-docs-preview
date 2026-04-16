@@ -1,3 +1,5 @@
+import PrinciplesList from '@site/src/components/PrinciplesList';
+
 export const meta = {
   overline: 'Core Framework',
   title: 'Four Interconnected Principles',
@@ -8,10 +10,23 @@ These requirements imply more than a better publication format. Standards must b
 
 This document elaborates an architectural approach that responds to these needs through four interconnected principles. Together, they create a composable, federated standards ecosystem in which standards are not merely published, but made operational — and in which the data and services derived from them become machine-interpretable as well.
 
-1. **Machine-Readable Standards** — Every standard — and every component within a standard — must be addressable, describable, and constrainable in a machine-readable form. Human-readable documents are derived from the canonical machine-readable form, not the other way around.
+export const principles = [
+  {
+    title: 'Machine-Readable Standards',
+    body: 'Every standard — and every component within a standard — must be addressable, describable, and constrainable in a machine-readable form. Human-readable documents are derived from the canonical machine-readable form, not the other way around.',
+  },
+  {
+    title: 'Profiling for Community Needs',
+    body: 'Every standard can be profiled — constrained, extended, and vocabulary-bound — for specific communities, jurisdictions, and applications. A profile is not a fork: it maintains a formal, testable inheritance chain to its base standard.',
+  },
+  {
+    title: 'Composable Building Blocks',
+    body: 'Profiles and standards are composed of reusable specification components — schemas, constraints, semantic mappings, transformations, and examples — that can be independently versioned, validated, and reused across domains.',
+  },
+  {
+    title: 'Interconnected Registers',
+    body: 'All assets — standards, profiles, building blocks, implementations, transformation engines, vocabularies, and validators — are stored in federated registers that enable discovery, reuse, provenance, and trust.',
+  },
+];
 
-2. **Profiling for Community Needs** — Every standard can be profiled — constrained, extended, and vocabulary-bound — for specific communities, jurisdictions, and applications. A profile is not a fork: it maintains a formal, testable inheritance chain to its base standard.
-
-3. **Composable Building Blocks** — Profiles and standards are composed of reusable specification components — schemas, constraints, semantic mappings, transformations, and examples — that can be independently versioned, validated, and reused across domains.
-
-4. **Interconnected Registers** — All assets — standards, profiles, building blocks, implementations, transformation engines, vocabularies, and validators — are stored in federated registers that enable discovery, reuse, provenance, and trust.
+<PrinciplesList items={principles} />

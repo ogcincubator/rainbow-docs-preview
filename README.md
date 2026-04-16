@@ -116,7 +116,21 @@ To add a card, add an entry to the `cards` array and the `<CardGrid cards={cards
 
 #### 03\_principles.mdx — Four Interconnected Principles
 
-Plain Markdown. The numbered list of principles can be edited directly. Bold text is written as `**text**`.
+This section uses the `PrinciplesList` component to render the numbered list. Each principle is an object in the `principles` array near the bottom of the file:
+
+```js
+export const principles = [
+  {
+    title: 'Machine-Readable Standards',
+    body: '…',
+  },
+  // …
+];
+```
+
+- **Edit a principle** — change the `title` or `body` string in its object.
+- **Add a principle** — add a new `{ title: '…', body: '…' }` entry to the array.
+- **Remove a principle** — delete its entry. Numbers are generated automatically.
 
 #### 04\_explore.mdx — Explore the Ecosystem
 
