@@ -58,7 +58,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'OGC RAINBOW',
+        title: 'OGC Research',
         items: [
           {
             to: '/docs/architecture',

@@ -1,0 +1,86 @@
+<svg viewBox="0 0 900 340" xmlns="http://www.w3.org/2000/svg" style="max-width:820px;">
+    <!-- Left side: Document-Centric -->
+    <rect x="20" y="20" width="380" height="300" rx="12" fill="#F7F9FA" stroke="#D5DBE0" stroke-width="1.5"/>
+    <text x="210" y="52" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" fill="#8A97A3" letter-spacing="0.08em">DOCUMENT-CENTRIC WORLD</text>
+
+    <!-- PDF docs -->
+    <rect x="60" y="80" width="100" height="70" rx="6" fill="#fff" stroke="#D5DBE0" stroke-width="1"/>
+    <rect x="72" y="90" width="76" height="6" rx="2" fill="#D5DBE0"/>
+    <rect x="72" y="102" width="60" height="4" rx="2" fill="#EEF1F3"/>
+    <rect x="72" y="112" width="68" height="4" rx="2" fill="#EEF1F3"/>
+    <rect x="72" y="122" width="50" height="4" rx="2" fill="#EEF1F3"/>
+    <rect x="72" y="132" width="64" height="4" rx="2" fill="#EEF1F3"/>
+    <text x="110" y="162" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#8A97A3">PDF Specification</text>
+
+    <rect x="200" y="80" width="100" height="70" rx="6" fill="#fff" stroke="#D5DBE0" stroke-width="1"/>
+    <rect x="212" y="90" width="76" height="6" rx="2" fill="#D5DBE0"/>
+    <rect x="212" y="102" width="55" height="4" rx="2" fill="#EEF1F3"/>
+    <rect x="212" y="112" width="70" height="4" rx="2" fill="#EEF1F3"/>
+    <rect x="212" y="122" width="45" height="4" rx="2" fill="#EEF1F3"/>
+    <rect x="212" y="132" width="62" height="4" rx="2" fill="#EEF1F3"/>
+    <text x="250" y="162" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#8A97A3">PDF Specification</text>
+
+    <!-- Human in middle -->
+    <circle cx="180" cy="220" r="22" fill="#fff" stroke="#B0BAC3" stroke-width="1.5"/>
+    <text x="180" y="225" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18">👤</text>
+    <text x="180" y="258" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#8A97A3">Human Intermediation</text>
+
+    <!-- Arrows from docs to human -->
+    <line x1="110" y1="165" x2="165" y2="200" stroke="#D5DBE0" stroke-width="1.5" stroke-dasharray="4 3"/>
+    <line x1="250" y1="165" x2="195" y2="200" stroke="#D5DBE0" stroke-width="1.5" stroke-dasharray="4 3"/>
+
+    <!-- Question marks -->
+    <text x="80" y="290" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" fill="#B0BAC3" font-style="italic">Implicit semantics · Manual interpretation</text>
+    <text x="95" y="306" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" fill="#B0BAC3" font-style="italic">Ambiguous · Error-prone · Slow</text>
+
+    <!-- Arrow in middle -->
+    <line x1="420" y1="170" x2="478" y2="170" stroke="#00ADD8" stroke-width="2.5" marker-end="url(#arrowTeal)"/>
+
+    <!-- Right side: Machine-Interpretable -->
+    <rect x="500" y="20" width="380" height="300" rx="12" fill="rgba(0,173,216,0.06)" stroke="#00ADD8" stroke-width="1.5"/>
+    <text x="690" y="52" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" fill="#0090B3" letter-spacing="0.08em">MACHINE-INTERPRETABLE ECOSYSTEM</text>
+
+    <!-- Building blocks -->
+    <rect x="530" y="75" width="72" height="50" rx="6" fill="#003859"/>
+    <text x="566" y="96" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="600" fill="#fff">Schemas</text>
+    <text x="566" y="112" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8" fill="rgba(255,255,255,0.6)">JSON / XML</text>
+
+    <rect x="614" y="75" width="72" height="50" rx="6" fill="#0090B3"/>
+    <text x="650" y="96" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="600" fill="#fff">Constraints</text>
+    <text x="650" y="112" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8" fill="rgba(255,255,255,0.6)">SHACL</text>
+
+    <rect x="698" y="75" width="72" height="50" rx="6" fill="#00ADD8"/>
+    <text x="734" y="96" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="600" fill="#fff">Semantics</text>
+    <text x="734" y="112" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8" fill="rgba(255,255,255,0.6)">JSON-LD</text>
+
+    <rect x="782" y="75" width="72" height="50" rx="6" fill="#E87722"/>
+    <text x="818" y="96" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="600" fill="#fff">Examples</text>
+    <text x="818" y="112" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8" fill="rgba(255,255,255,0.6)">CI-tested</text>
+
+    <text x="690" y="147" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="600" fill="#003859">Building Blocks</text>
+
+    <!-- Register -->
+    <rect x="570" y="165" width="240" height="44" rx="8" fill="#003859"/>
+    <text x="690" y="192" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" fill="#fff">Federated Register Infrastructure</text>
+
+    <!-- AI agent and machine -->
+    <rect x="580" y="230" width="90" height="50" rx="8" fill="#fff" stroke="#00ADD8" stroke-width="1.5"/>
+    <text x="625" y="253" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16">🤖</text>
+    <text x="625" y="270" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" fill="#0090B3" font-weight="500">AI Agent</text>
+
+    <rect x="700" y="230" width="90" height="50" rx="8" fill="#fff" stroke="#00ADD8" stroke-width="1.5"/>
+    <text x="745" y="253" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16">⚙️</text>
+    <text x="745" y="270" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" fill="#0090B3" font-weight="500">Automation</text>
+
+    <!-- Arrows from register to consumers -->
+    <line x1="645" y1="209" x2="625" y2="230" stroke="#00ADD8" stroke-width="1.5"/>
+    <line x1="735" y1="209" x2="745" y2="230" stroke="#00ADD8" stroke-width="1.5"/>
+
+    <text x="580" y="306" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" fill="#0090B3" font-style="italic">Explicit semantics · Machine-validated</text>
+
+    <defs>
+        <marker id="arrowTeal" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="#00ADD8"/>
+        </marker>
+    </defs>
+</svg>
